@@ -14,8 +14,8 @@ config/name="FroggyJump"
 run/main_scene="res://script/game.tscn"
 config/features=PackedStringArray("4.1", "Mobile")
 boot_splash/bg_color=Color(1, 1, 1, 1)
-boot_splash/image="res://asset/image/texture/loading/loading.png"
-config/icon="res://asset/icon.svg"
+boot_splash/image="res://asset/image/loading/loading.png"
+config/icon="res://asset/icon/icon.svg"
 
 [display]
 

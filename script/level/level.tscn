@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://bmkyw0bd5yf7g"]
+
+[ext_resource type="Script" path="res://script/level/level.gd" id="1_afsor"]
+[ext_resource type="PackedScene" uid="uid://dnxvurhl2cset" path="res://script/level/jumper/jumper.tscn" id="2_tc0vj"]
+[ext_resource type="PackedScene" uid="uid://ck3vduaa2t5wp" path="res://script/level/platform/platform.tscn" id="3_wauld"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xy8qr"]
+size = Vector2(400, 800)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_1xlqg"]
+a = Vector2(-180, -380)
+b = Vector2(180, 380)
+
+[node name="Level" type="Area2D"]
+position = Vector2(250, 500)
+script = ExtResource("1_afsor")
+_spawn_area_path = NodePath("SpawnArea")
+_jumper_scene = ExtResource("2_tc0vj")
+_platform_scene = ExtResource("3_wauld")
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_xy8qr")
+
+[node name="SpawnArea" type="CollisionShape2D" parent="."]
+shape = SubResource("SegmentShape2D_1xlqg")
