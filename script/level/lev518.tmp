@@ -15,8 +15,6 @@ b = Vector2(180, 380)
 position = Vector2(250, 500)
 script = ExtResource("1_afsor")
 _spawn_area_path = NodePath("SpawnArea")
-_platforms_path = NodePath("Platforms")
-_jumpers_path = NodePath("Jumpers")
 _jumper_scene = ExtResource("2_tc0vj")
 _platform_scene = ExtResource("3_wauld")
 
@@ -25,7 +23,3 @@ shape = SubResource("RectangleShape2D_xy8qr")
 
 [node name="SpawnArea" type="CollisionShape2D" parent="."]
 shape = SubResource("SegmentShape2D_1xlqg")
-
-[node name="Platforms" type="Node2D" parent="."]
-
-[node name="Jumpers" type="Node2D" parent="."]
