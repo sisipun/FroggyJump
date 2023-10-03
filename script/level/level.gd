@@ -17,6 +17,7 @@ extends Area2D
 
 var _platform_map: Array[Array] = []
 var _clicked_platform: Platform = null
+var _clicked_possible_moves: Array[Vector2i] = []
 
 
 func _ready() -> void:
@@ -42,7 +43,7 @@ func _ready() -> void:
 			if x != y:
 				var jumper: Jumper = _jumper_scene.instantiate()
 				_jumpers.add_child(jumper)
-				jumper.init(jumper_size)
+				jumper.init(jumper_size, 2)
 				platform.jumper = jumper
 			
 			_platform_map[x].append(platform)
@@ -54,28 +55,92 @@ func _on_window_size_changed() -> void:
 
 func _on_platform_clicked(coordinates: Vector2i) -> void:
 	if _clicked_platform == null or not _clicked_platform.has_jumper():
-		_clicked_platform = _platform_map[coordinates.x][coordinates.y]
+		_set_clicked(coordinates)
 		return
 	
 	var platform: Platform = _platform_map[coordinates.x][coordinates.y]
-	var coordimates_diff: Vector2i = _clicked_platform.coordinates - coordinates
-	if platform.has_jumper() or abs(coordimates_diff) not in [Vector2i(2, 0), Vector2i(0, 2)]:
-		_clicked_platform = _platform_map[coordinates.x][coordinates.y]
+	if platform.has_jumper() or coordinates not in _clicked_possible_moves:
+		_set_clicked(coordinates)
 		return
 	
-	var cordinates_between: Vector2i = coordinates + (coordimates_diff / 2)
-	var platform_between: Platform = _platform_map[cordinates_between.x][cordinates_between.y]
-	if not platform_between.has_jumper():
-		_clicked_platform = _platform_map[coordinates.x][coordinates.y]
-		return
-	
-	var jummer_between: Jumper = platform_between.jumper
+	var clicked_coordinates: Vector2i = _clicked_platform.coordinates
 	var clicked_jumper: Jumper = _clicked_platform.jumper
 	
 	_clicked_platform.remove_jumper()
-	_clicked_platform = null
+	_clear_clicked()
 	
-	platform_between.remove_jumper()
-	jummer_between.queue_free()
+	for x in range(min(clicked_coordinates.x, coordinates.x) + 1, max(clicked_coordinates.x, coordinates.x)):
+		var platform_between: Platform = _platform_map[x][clicked_coordinates.y]
+		if platform_between.has_jumper():
+			var jummer_between: Jumper = platform_between.jumper
+			platform_between.remove_jumper()
+			jummer_between.queue_free()
+	
+	for y in range(min(clicked_coordinates.y, coordinates.y) + 1, max(clicked_coordinates.y, coordinates.y)):
+		var platform_between: Platform = _platform_map[clicked_coordinates.x][y]
+		if platform_between.has_jumper():
+			var jummer_between: Jumper = platform_between.jumper
+			platform_between.remove_jumper()
+			jummer_between.queue_free()
 	
 	platform.jumper = clicked_jumper
+
+
+func _set_clicked(coordinates: Vector2i) -> void:
+	if _clicked_platform != null:
+		_clear_clicked()
+	
+	_clicked_platform = _platform_map[coordinates.x][coordinates.y]
+	_clicked_platform.show_as_current()
+	
+	_clicked_possible_moves = _get_possible_moves(_clicked_platform.coordinates)
+	for move in _clicked_possible_moves:
+		_platform_map[move.x][move.y].show_as_possible_move()
+
+
+func _clear_clicked() -> void:
+	_clicked_platform.show_as_default()
+	
+	for move in _clicked_possible_moves:
+		_platform_map[move.x][move.y].show_as_default()
+	
+	_clicked_platform = null
+	_clicked_possible_moves.clear()
+
+
+func _get_possible_moves(coordinates: Vector2i) -> Array[Vector2i]:
+	var platform: Platform = _platform_map[coordinates.x][coordinates.y]
+	if not platform.has_jumper():
+		return []
+	
+	var jumper: Jumper = platform.jumper
+	var jump_distance: int = jumper.jump_distance
+	
+	return (
+		_get_line_possible_moves(coordinates, jump_distance, 1, 0) 
+		+ _get_line_possible_moves(coordinates, jump_distance, 0, 1) 
+		+ _get_line_possible_moves(coordinates, jump_distance, -1, 0) 
+		+  _get_line_possible_moves(coordinates, jump_distance, 0, -1)
+	)
+
+
+func _get_line_possible_moves(
+	coordinates: Vector2i, 
+	jump_distance: int, 
+	x_mul: int, 
+	y_mul: int
+) -> Array[Vector2i]:
+	var moves: Array[Vector2i] = []
+	var has_jumper: bool = false
+	for i in range(jump_distance + 1):
+		var new_x: int = coordinates.x + (x_mul * (i + 1))
+		var new_y: int = coordinates.y + (y_mul * (i + 1))
+		if new_x >= _platform_map.size() or new_x < 0 or new_y >= _platform_map[0].size() or new_y < 0:
+			continue
+		if _platform_map[new_x][new_y].has_jumper():
+			has_jumper = true
+			continue
+		if has_jumper:
+			moves.append(Vector2i(new_x, new_y))
+	
+	return moves

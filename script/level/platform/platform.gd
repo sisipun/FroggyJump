@@ -6,8 +6,10 @@ signal clicked(coordinates)
 
 
 @export_node_path("CollisionShape2D") var _shape_path: NodePath
+@export_node_path("AnimatedSprite2D") var _body_path: NodePath
 
 @onready var _shape: CollisionShape2D = get_node(_shape_path)
+@onready var _body: AnimatedSprite2D = get_node(_body_path)
 
 var coordinates: Vector2i
 
@@ -38,6 +40,18 @@ func _input_event(_viewport: Viewport, event: InputEvent, _shape_idx: int) -> vo
 
 func has_jumper() -> bool:
 	return jumper != null
+
+
+func show_as_default() -> void:
+	_body.play("default")
+
+
+func show_as_current() -> void:
+	_body.play("current")
+
+
+func show_as_possible_move() -> void:
+	_body.play("possible_move")
 
 
 func remove_jumper() -> void:

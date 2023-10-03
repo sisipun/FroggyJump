@@ -1,17 +1,47 @@
-[gd_scene load_steps=4 format=3 uid="uid://ck3vduaa2t5wp"]
+[gd_scene load_steps=7 format=3 uid="uid://ck3vduaa2t5wp"]
 
 [ext_resource type="Script" path="res://script/level/platform/platform.gd" id="1_oi57p"]
-[ext_resource type="Texture2D" uid="uid://oo12tugi345g" path="res://asset/image/level/platform/platform.png" id="2_obswu"]
+[ext_resource type="Texture2D" uid="uid://b31pmxrjtesbq" path="res://asset/image/level/platform/platform_current.svg" id="2_lhv8e"]
+[ext_resource type="Texture2D" uid="uid://dxewydungafbf" path="res://asset/image/level/platform/platform.svg" id="3_ifswa"]
+[ext_resource type="Texture2D" uid="uid://cuxuifv56tb8k" path="res://asset/image/level/platform/platform_possible_move.svg" id="4_mx85i"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_04vlr"]
 radius = 64.0
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_h48kh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_lhv8e")
+}],
+"loop": true,
+"name": &"current",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_ifswa")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_mx85i")
+}],
+"loop": true,
+"name": &"possible_move",
+"speed": 5.0
+}]
+
 [node name="Platform" type="Area2D"]
 script = ExtResource("1_oi57p")
 _shape_path = NodePath("Shape")
+_body_path = NodePath("Body")
 
 [node name="Shape" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_04vlr")
 
-[node name="Body" type="Sprite2D" parent="."]
-texture = ExtResource("2_obswu")
+[node name="Body" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_h48kh")

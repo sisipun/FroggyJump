@@ -6,10 +6,13 @@ extends Area2D
 
 @onready var _shape: CollisionShape2D = get_node(_shape_path)
 
+var jump_distance: int
 
-func init(_size: Vector2) -> Jumper:
+
+func init(_size: Vector2, _jump_distance: int) -> Jumper:
 	scale = Vector2(
 		_size.x / _shape.shape.get_rect().size.x, 
 		_size.y / _shape.shape.get_rect().size.y
 	)
+	jump_distance = _jump_distance
 	return self
