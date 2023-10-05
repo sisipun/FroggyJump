@@ -10,6 +10,7 @@ extends Area2D
 
 @export var _level_size: Vector2i
 @export var _platform_margin: Vector2 
+@export var _jumpers_count_to_win: int
 
 @onready var _spawn_area: CollisionShape2D = get_node(_spawn_area_path)
 @onready var _platforms: Node2D = get_node(_platforms_path)
@@ -24,12 +25,29 @@ func _ready() -> void:
 	_on_window_size_changed()
 	get_viewport().size_changed.connect(_on_window_size_changed)
 	
+	clear()
+	start()
+
+
+func _on_window_size_changed() -> void:
+	position = get_viewport_rect().size / 2
+
+
+func clear() -> void:
+	for line in _platform_map:
+		for platform in line:
+			_remove_jumper(platform.coordinates)
+			platform.clicked.disconnect(_on_platform_clicked)
+			platform.queue_free()
+	_platform_map.clear()
+
+
+func start() -> void:
 	var spawn_area_size: Vector2 = _spawn_area.shape.b - _spawn_area.shape.a
 	var level_size: Vector2 = Vector2(_level_size.x, _level_size.y)
 	var platform_size: Vector2 = (spawn_area_size - _platform_margin * (level_size + Vector2(1, 1))) / level_size
 	var jumper_size: Vector2 = platform_size / 2.0
 	
-	_platform_map.clear()
 	for x in range(_level_size.x):
 		_platform_map.append([])
 		for y in range(_level_size.y):
@@ -43,14 +61,10 @@ func _ready() -> void:
 			if x != y:
 				var jumper: Jumper = _jumper_scene.instantiate()
 				_jumpers.add_child(jumper)
-				jumper.init(jumper_size, 2)
+				jumper.init(jumper_size, 1)
 				platform.jumper = jumper
 			
 			_platform_map[x].append(platform)
-
-
-func _on_window_size_changed() -> void:
-	position = get_viewport_rect().size / 2
 
 
 func _on_platform_clicked(coordinates: Vector2i) -> void:
@@ -70,20 +84,35 @@ func _on_platform_clicked(coordinates: Vector2i) -> void:
 	_clear_clicked()
 	
 	for x in range(min(clicked_coordinates.x, coordinates.x) + 1, max(clicked_coordinates.x, coordinates.x)):
-		var platform_between: Platform = _platform_map[x][clicked_coordinates.y]
-		if platform_between.has_jumper():
-			var jummer_between: Jumper = platform_between.jumper
-			platform_between.remove_jumper()
-			jummer_between.queue_free()
+		_remove_jumper(Vector2i(x, clicked_coordinates.y))
 	
 	for y in range(min(clicked_coordinates.y, coordinates.y) + 1, max(clicked_coordinates.y, coordinates.y)):
-		var platform_between: Platform = _platform_map[clicked_coordinates.x][y]
-		if platform_between.has_jumper():
-			var jummer_between: Jumper = platform_between.jumper
-			platform_between.remove_jumper()
-			jummer_between.queue_free()
+		_remove_jumper(Vector2i(clicked_coordinates.x, y))
 	
 	platform.jumper = clicked_jumper
+	if _is_no_steps():
+		print('won' if _jumpers_count_to_win >= _get_jumpers_count() else 'lost')
+		clear()
+		start()
+
+
+func _is_no_steps() -> bool:
+	for x in range(_level_size.x):
+		for y in range(_level_size.y):
+			if _get_possible_moves(Vector2i(x, y)) != []:
+				return false
+	
+	return true
+
+
+func _get_jumpers_count() -> int:
+	var count: int = 0
+	for x in range(_level_size.x):
+		for y in range(_level_size.y):
+			if _platform_map[x][y].has_jumper():
+				count += 1
+	
+	return count
 
 
 func _set_clicked(coordinates: Vector2i) -> void:
@@ -106,6 +135,14 @@ func _clear_clicked() -> void:
 	
 	_clicked_platform = null
 	_clicked_possible_moves.clear()
+
+
+func _remove_jumper(coordinates: Vector2i) -> void:
+	var platform: Platform = _platform_map[coordinates.x][coordinates.y]
+	if platform.has_jumper():
+		var jummer: Jumper = platform.jumper
+		platform.remove_jumper()
+		jummer.queue_free()
 
 
 func _get_possible_moves(coordinates: Vector2i) -> Array[Vector2i]:
