@@ -1,0 +1,12 @@
+[gd_scene load_steps=5 format=3 uid="uid://b2417s1ervwhe"]
+
+[ext_resource type="Script" path="res://script/game_state/storage/jumper_storage.gd" id="1_8pyyh"]
+[ext_resource type="Resource" uid="uid://dh2svsxabitod" path="res://asset/resource/jumper/default_jumper.tres" id="2_eh51m"]
+[ext_resource type="Resource" uid="uid://r5x0ad03r553" path="res://asset/resource/jumper/fast_jumper.tres" id="3_8aool"]
+[ext_resource type="Resource" uid="uid://ch1c71xegaon0" path="res://asset/resource/jumper/big_jumper.tres" id="4_7p7je"]
+
+[node name="JumperStorage" type="Node"]
+script = ExtResource("1_8pyyh")
+default = ExtResource("2_eh51m")
+fast = ExtResource("3_8aool")
+big = ExtResource("4_7p7je")

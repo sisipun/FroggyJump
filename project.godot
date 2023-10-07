@@ -17,6 +17,12 @@ boot_splash/bg_color=Color(1, 1, 1, 1)
 boot_splash/image="res://asset/image/loading/loading.png"
 config/icon="res://asset/icon/icon.svg"
 
+[autoload]
+
+Jumpers="*res://script/game_state/storage/jumper_storage.tscn"
+Platforms="*res://script/game_state/storage/platform_storage.tscn"
+Levels="*res://script/game_state/storage/level_storage.tscn"
+
 [display]
 
 window/size/viewport_width=500

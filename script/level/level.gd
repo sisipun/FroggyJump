@@ -8,6 +8,7 @@ extends Area2D
 @export var _jumper_scene: PackedScene
 @export var _platform_scene: PackedScene
 
+@export var _level_id: String
 @export var _level_size: Vector2i
 @export var _platform_margin: Vector2 
 @export var _jumpers_count_to_win: int
@@ -43,6 +44,7 @@ func clear() -> void:
 
 
 func start() -> void:
+	var level_model: LevelModel = Levels.get_model_by_id(_level_id)
 	var spawn_area_size: Vector2 = _spawn_area.shape.b - _spawn_area.shape.a
 	var level_size: Vector2 = Vector2(_level_size.x, _level_size.y)
 	var platform_size: Vector2 = (spawn_area_size - _platform_margin * (level_size + Vector2(1, 1))) / level_size

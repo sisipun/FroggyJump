@@ -2,6 +2,14 @@ class_name PlatformModel
 extends Object
 
 
+enum Type {
+	NONE,
+	DEFAULT,
+	CANT_JUMP_FROM,
+	CANT_JUMP_TO
+}
+
+
 var _coordinates: Vector2i
 var _jumper: JumperModel
 

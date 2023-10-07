@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="PlatformResource" load_steps=2 format=3 uid="uid://bap05klorw4n5"]
+
+[ext_resource type="Script" path="res://script/game_state/resource/platform_resource.gd" id="1_ktid3"]
+
+[resource]
+script = ExtResource("1_ktid3")

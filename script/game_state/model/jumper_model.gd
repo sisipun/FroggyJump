@@ -2,6 +2,14 @@ class_name JumperModel
 extends Object
 
 
+enum Type {
+	NONE,
+	DEFAULT,
+	FAST,
+	BIG
+}
+
+
 signal hitted(current_health)
 signal dead
 

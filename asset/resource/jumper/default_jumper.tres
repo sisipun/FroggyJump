@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="JumperResource" load_steps=2 format=3 uid="uid://dh2svsxabitod"]
+
+[ext_resource type="Script" path="res://script/game_state/resource/jumper_resource.gd" id="1_fasie"]
+
+[resource]
+script = ExtResource("1_fasie")
+jump_distance = 1
+health = 1

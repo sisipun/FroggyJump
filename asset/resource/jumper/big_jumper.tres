@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="JumperResource" load_steps=2 format=3 uid="uid://ch1c71xegaon0"]
+
+[ext_resource type="Script" path="res://script/game_state/resource/jumper_resource.gd" id="1_pduvo"]
+
+[resource]
+script = ExtResource("1_pduvo")
+jump_distance = 1
+health = 2
