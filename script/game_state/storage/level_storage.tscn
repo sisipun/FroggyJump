@@ -5,4 +5,4 @@
 
 [node name="LevelStorage" type="Node"]
 script = ExtResource("1_fjihp")
-_levels = Array[Object]([ExtResource("2_t4o83")])
+_levels = Array[Resource("res://script/game_state/resource/level_resource.gd")]([ExtResource("2_t4o83")])

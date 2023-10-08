@@ -2,7 +2,7 @@ class_name Platform
 extends Area2D
 
 
-signal clicked(coordinates)
+signal clicked(x, y)
 
 
 @export_node_path("CollisionShape2D") var _shape_path: NodePath
@@ -35,7 +35,7 @@ func init(_coordinates: Vector2i, _position: Vector2, _size: Vector2) -> Platfor
 
 func _input_event(_viewport: Viewport, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventScreenTouch and event.is_pressed():
-		emit_signal("clicked", coordinates)
+		emit_signal("clicked", coordinates.x, coordinates.y)
 
 
 func has_jumper() -> bool:

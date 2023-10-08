@@ -20,8 +20,7 @@ _jumpers_path = NodePath("Jumpers")
 _jumper_scene = ExtResource("2_tc0vj")
 _platform_scene = ExtResource("3_wauld")
 _level_id = "1"
-_level_size = Vector2i(3, 4)
-_jumpers_count_to_win = 3
+_platform_margin = Vector2(20, 20)
 
 [node name="Shape" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_xy8qr")

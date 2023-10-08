@@ -24,4 +24,4 @@ func get_model_by_type(coordinates: Vector2i, type: PlatformModel.Type) -> Platf
 	if type == PlatformModel.Type.NONE:
 		return null
 	
-	return PlatformModel.new(coordinates)
+	return PlatformModel.new(coordinates, type)

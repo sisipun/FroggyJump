@@ -2,13 +2,29 @@ class_name LevelModel
 extends Object
 
 
+signal selected(x, y)
+signal unselected(x, y)
+signal jumper_moved(x_from, y_from, x_to, y_to)
+signal jumper_hitted(x, y, current_health)
+signal jumper_dead(x, y)
+signal completed(won)
+
+
 var _width: int
 var _height: int
 var _win_condition: int
 var _map: Array[Array]
 
+var _selected_platform: PlatformModel
 
-func _init(width: int, height: int, win_condition: int, default_cell: LevelCellResource, custom_cells: Array[LevelCellCustomResource]) -> void:
+
+func _init(
+	width: int, 
+	height: int, 
+	win_condition: int, 
+	default_cell: LevelCellResource, 
+	custom_cells: Array[LevelCellCustomResource]
+) -> void:
 	_width = width
 	_height = height
 	_win_condition = win_condition
@@ -23,5 +39,114 @@ func _init(width: int, height: int, win_condition: int, default_cell: LevelCellR
 			var cell: LevelCellResource = _custom_cells[coordinates] if _custom_cells.has(coordinates) else default_cell
 			var jumper: JumperModel = Jumpers.get_model_by_type(coordinates, cell.jumper)
 			var platform_model: PlatformModel = Platforms.get_model_by_type(coordinates, cell.platfrom)
-			platform_model.add_jumper(jumper)
+			if platform_model != null:
+				platform_model.add_jumper(jumper)
 			_map[x].append(platform_model)
+			platform_model.jumper_hitted.connect(Callable(self, "_on_jumper_hitted").bind(x, y))
+			platform_model.jumper_dead.connect(Callable(self, "_on_jumper_dead").bind(x, y))
+
+
+func is_completed() -> bool:
+	for x in range(_width):
+		for y in range(_height):
+			if get_possible_moves(x, y) != []:
+				return false
+	
+	return true
+
+
+func is_won() -> bool:
+	return get_jumpers_count() <= _win_condition
+
+
+func get_width() -> int:
+	return _width
+
+
+func get_height() -> int:
+	return _height
+
+
+func has_platform(x: int, y: int) -> bool:
+	return _map[x][y] != null
+
+
+func get_platform(x: int, y: int) -> PlatformModel:
+	return _map[x][y]
+
+
+func get_possible_moves(x: int, y: int) -> Array[Vector2i]:
+	var platform: PlatformModel = _map[x][y]
+	if platform == null or not platform.has_jumper():
+		return []
+	
+	var moves: Array[Vector2i] = []
+	var jumper_move_range: Array[Vector2i] = platform.get_jumper_move_range(_width, _height)
+	for jumper_move in jumper_move_range:
+		var move_to_platform: PlatformModel = _map[jumper_move.x][jumper_move.y]
+		if move_to_platform != null and move_to_platform.can_jump_to(platform, _map):
+			moves.append(jumper_move)
+	
+	return moves
+
+
+func get_jumpers_count() -> int:
+	var count: int = 0
+	for x in range(_width):
+		for y in range(_height):
+			if _map[x][y].has_jumper():
+				count += 1
+	
+	return count
+
+
+func select(x: int, y: int) -> void:
+	if _map[x][y] == null:
+		return
+	
+	if _selected_platform == null:
+		_selected_platform = _map[x][y]
+		emit_signal("selected", x, y)
+		return
+	
+	var selected_coordinates: Vector2i = _selected_platform.get_coordinates()
+	if not _try_move(selected_coordinates.x, selected_coordinates.y, x, y):
+		emit_signal("unselected", selected_coordinates.x, selected_coordinates.y)
+		_selected_platform = _map[x][y]
+		emit_signal("selected", x, y)
+		return
+	
+	emit_signal("unselected", selected_coordinates.x, selected_coordinates.y)
+	_selected_platform = null
+	if is_completed():
+		emit_signal("completed", is_won())
+
+
+func _try_move(x_from: int, y_from: int, x_to: int, y_to: int) -> bool:
+	var from_platform: PlatformModel = _map[x_from][y_from]
+	var to_platform: PlatformModel = _map[x_to][y_to]
+	if from_platform == null or to_platform == null:
+		return false
+	
+	var possible_moves: Array[Vector2i] = get_possible_moves(x_from, y_from)
+	if to_platform.get_coordinates() not in possible_moves:
+		return false
+	
+	var jumper: JumperModel = from_platform.get_jumper()
+	from_platform.clear_jumper()
+	
+	var jumpers_between: Array[JumperModel] = from_platform.get_jumpers_between(to_platform, _map)
+	for jumper_between in jumpers_between:
+		jumper_between.hit()
+	
+	_map[x_to][y_to].add_jumper(jumper)
+	emit_signal("jumper_moved", x_from, y_from, x_to, y_to)
+	return true
+
+
+func _on_jumper_hitted(x: int, y: int, current_health: int) -> void:
+	emit_signal("jumper_hitted", x, y, current_health)
+
+
+func _on_jumper_dead(x: int, y: int) -> void:
+	emit_signal("jumper_dead", x, y)
