@@ -5,4 +5,3 @@
 [node name="Game" type="Node"]
 
 [node name="Level" parent="." instance=ExtResource("1_sv3j7")]
-_platform_margin = Vector2(20, 20)

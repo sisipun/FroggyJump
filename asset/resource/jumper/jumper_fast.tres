@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="JumperResource" load_steps=4 format=3 uid="uid://r5x0ad03r553"]
+
+[ext_resource type="Script" path="res://script/game_state/resource/jumper_resource.gd" id="1_3m3ec"]
+[ext_resource type="Texture2D" uid="uid://bpk1eqwr1yvre" path="res://asset/image/level/jumper/jumper_fast.svg" id="1_51a11"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_upmoc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_51a11")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[resource]
+script = ExtResource("1_3m3ec")
+jump_distance = 2
+health = 0
+body = SubResource("SpriteFrames_upmoc")

@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://c2cqwthix6tj7"]
 
 [ext_resource type="Script" path="res://script/game_state/storage/platform_storage.gd" id="1_oh1pv"]
-[ext_resource type="Resource" uid="uid://bap05klorw4n5" path="res://asset/resource/platform/default_platform.tres" id="2_ksskg"]
-[ext_resource type="Resource" uid="uid://b7w8px2c71kbl" path="res://asset/resource/platform/cant_jump_from_platform.tres" id="3_vclut"]
-[ext_resource type="Resource" uid="uid://cd2qy4678x6of" path="res://asset/resource/platform/cant_jump_to_platform.tres" id="4_tjld0"]
+[ext_resource type="Resource" uid="uid://bap05klorw4n5" path="res://asset/resource/platform/platform_default.tres" id="2_ksskg"]
+[ext_resource type="Resource" uid="uid://b7w8px2c71kbl" path="res://asset/resource/platform/platform_cant_jump_from.tres" id="3_vclut"]
+[ext_resource type="Resource" uid="uid://cd2qy4678x6of" path="res://asset/resource/platform/platform_cant_jump_to.tres" id="4_tjld0"]
 
 [node name="PlatformStorage" type="Node"]
 script = ExtResource("1_oh1pv")

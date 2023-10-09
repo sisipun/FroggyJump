@@ -82,9 +82,10 @@ func start() -> void:
 			
 			if platform_model.has_jumper():
 				var jumper_model: JumperModel = platform_model.get_jumper()
+				var jumper_resource: JumperResource = Jumpers.get_resource_by_type(jumper_model.get_type())
 				var jumper: Jumper = _jumper_scene.instantiate()
 				_jumpers.add_child(jumper)
-				jumper.init(jumper_size, jumper_model.get_jump_distance(), jumper_model.get_health())
+				jumper.init(jumper_size, jumper_model.get_jump_distance(), jumper_model.get_health(), jumper_resource.body)
 				platform.jumper = jumper
 			
 			_platform_map[x].append(platform)
