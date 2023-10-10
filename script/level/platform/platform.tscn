@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://ck3vduaa2t5wp"]
+[gd_scene load_steps=9 format=3 uid="uid://ck3vduaa2t5wp"]
 
 [ext_resource type="Script" path="res://script/level/platform/platform.gd" id="1_oi57p"]
-[ext_resource type="Texture2D" uid="uid://b31pmxrjtesbq" path="res://asset/image/level/platform/platform_current.svg" id="2_lhv8e"]
+[ext_resource type="Texture2D" uid="uid://b31pmxrjtesbq" path="res://asset/image/level/platform/platform_effect_current.svg" id="3_1t87p"]
 [ext_resource type="Texture2D" uid="uid://dxewydungafbf" path="res://asset/image/level/platform/platform.svg" id="3_ifswa"]
-[ext_resource type="Texture2D" uid="uid://cuxuifv56tb8k" path="res://asset/image/level/platform/platform_possible_move.svg" id="4_mx85i"]
+[ext_resource type="Texture2D" uid="uid://cuxuifv56tb8k" path="res://asset/image/level/platform/platform_effect_possible_move.svg" id="4_fek3o"]
+[ext_resource type="Texture2D" uid="uid://duoyx4k62caas" path="res://asset/image/level/platform/platform_effect_default.svg" id="4_nosmd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_04vlr"]
 radius = 64.0
@@ -12,7 +13,18 @@ radius = 64.0
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_lhv8e")
+"texture": ExtResource("3_ifswa")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e80g0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_1t87p")
 }],
 "loop": true,
 "name": &"current",
@@ -20,7 +32,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_ifswa")
+"texture": ExtResource("4_nosmd")
 }],
 "loop": true,
 "name": &"default",
@@ -28,7 +40,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_mx85i")
+"texture": ExtResource("4_fek3o")
 }],
 "loop": true,
 "name": &"possible_move",
@@ -39,9 +51,13 @@ animations = [{
 script = ExtResource("1_oi57p")
 _shape_path = NodePath("Shape")
 _body_path = NodePath("Body")
+_effect_path = NodePath("Effect")
 
 [node name="Shape" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_04vlr")
 
 [node name="Body" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_h48kh")
+
+[node name="Effect" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_e80g0")

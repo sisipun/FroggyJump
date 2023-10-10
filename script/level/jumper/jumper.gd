@@ -12,12 +12,17 @@ var jump_distance: int
 var health: int
 
 
-func init(_size: Vector2, _jump_distance: int, _health: int, body: SpriteFrames) -> Jumper:
+func init(
+	_size: Vector2, 
+	_jump_distance: int, 
+	_health: int, 
+	_sprite_frames: SpriteFrames
+) -> Jumper:
 	scale = Vector2(
 		_size.x / _shape.shape.get_rect().size.x, 
 		_size.y / _shape.shape.get_rect().size.y
 	)
 	jump_distance = _jump_distance
 	health = _health
-	_body.sprite_frames = body
+	_body.sprite_frames = _sprite_frames
 	return self

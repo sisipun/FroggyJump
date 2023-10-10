@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="JumperResource" load_steps=4 format=3 uid="uid://dh2svsxabitod"]
 
-[ext_resource type="Script" path="res://script/game_state/resource/jumper_resource.gd" id="1_fasie"]
+[ext_resource type="Script" path="res://script/game_state/resource/jumper/jumper_resource.gd" id="1_fasie"]
 [ext_resource type="Texture2D" uid="uid://c5y1xv7ytii5n" path="res://asset/image/level/jumper/jumper.svg" id="1_itueo"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_0flwt"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_wkodc"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -18,4 +18,4 @@ animations = [{
 script = ExtResource("1_fasie")
 jump_distance = 1
 health = 1
-body = SubResource("SpriteFrames_0flwt")
+sprite_frames = SubResource("SpriteFrames_wkodc")

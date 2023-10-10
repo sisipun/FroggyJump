@@ -46,9 +46,10 @@ func clear() -> void:
 	
 	for line in _platform_map:
 		for platform in line:
-			_remove_jumper(platform.coordinates.x, platform.coordinates.y)
-			platform.clicked.disconnect(_on_platform_clicked)
-			platform.queue_free()
+			if platform != null:
+				_remove_jumper(platform.coordinates.x, platform.coordinates.y)
+				platform.clicked.disconnect(_on_platform_clicked)
+				platform.queue_free()
 	_platform_map.clear()
 
 
@@ -74,10 +75,16 @@ func start() -> void:
 				continue
 			
 			var platform_model: PlatformModel = _level_model.get_platform(x, y)
+			var platform_resource: PlatformResource = Platforms.get_resource_by_type(platform_model.get_type())
 			var spawn_position = _spawn_area.shape.a + _platform_margin + (platform_size / 2) + Vector2(x, y) * (_platform_margin + platform_size)
 			var platform: Platform = _platform_scene.instantiate()
 			_platforms.add_child(platform)
-			platform.init(platform_model.get_coordinates(), spawn_position, platform_size)
+			platform.init(
+				platform_model.get_coordinates(), 
+				spawn_position, 
+				platform_size, 
+				platform_resource.sprite_frames
+			)
 			platform.clicked.connect(_on_platform_clicked)
 			
 			if platform_model.has_jumper():
@@ -85,7 +92,12 @@ func start() -> void:
 				var jumper_resource: JumperResource = Jumpers.get_resource_by_type(jumper_model.get_type())
 				var jumper: Jumper = _jumper_scene.instantiate()
 				_jumpers.add_child(jumper)
-				jumper.init(jumper_size, jumper_model.get_jump_distance(), jumper_model.get_health(), jumper_resource.body)
+				jumper.init(
+					jumper_size, 
+					jumper_model.get_jump_distance(), 
+					jumper_model.get_health(), 
+					jumper_resource.sprite_frames
+				)
 				platform.jumper = jumper
 			
 			_platform_map[x].append(platform)

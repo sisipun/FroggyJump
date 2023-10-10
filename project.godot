@@ -19,9 +19,9 @@ config/icon="res://asset/icon/icon.svg"
 
 [autoload]
 
-Jumpers="*res://script/game_state/storage/jumper_storage.tscn"
-Platforms="*res://script/game_state/storage/platform_storage.tscn"
-Levels="*res://script/game_state/storage/level_storage.tscn"
+Jumpers="*res://script/game_state/storage/jumper/jumper_storage.tscn"
+Platforms="*res://script/game_state/storage/platform/platform_storage.tscn"
+Levels="*res://script/game_state/storage/level/level_storage.tscn"
 
 [display]
 

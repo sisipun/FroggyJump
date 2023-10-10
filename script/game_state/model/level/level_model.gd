@@ -41,9 +41,9 @@ func _init(
 			var platform_model: PlatformModel = Platforms.get_model_by_type(coordinates, cell.platfrom)
 			if platform_model != null:
 				platform_model.add_jumper(jumper)
+				platform_model.jumper_hitted.connect(Callable(self, "_on_jumper_hitted").bind(x, y))
+				platform_model.jumper_dead.connect(Callable(self, "_on_jumper_dead").bind(x, y))
 			_map[x].append(platform_model)
-			platform_model.jumper_hitted.connect(Callable(self, "_on_jumper_hitted").bind(x, y))
-			platform_model.jumper_dead.connect(Callable(self, "_on_jumper_dead").bind(x, y))
 
 
 func is_completed() -> bool:
@@ -94,7 +94,8 @@ func get_jumpers_count() -> int:
 	var count: int = 0
 	for x in range(_width):
 		for y in range(_height):
-			if _map[x][y].has_jumper():
+			var platform: PlatformModel = _map[x][y]
+			if platform != null and platform.has_jumper():
 				count += 1
 	
 	return count

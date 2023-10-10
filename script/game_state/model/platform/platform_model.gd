@@ -9,8 +9,7 @@ signal jumper_dead
 enum Type {
 	NONE,
 	DEFAULT,
-	CANT_JUMP_FROM,
-	CANT_JUMP_TO
+	CANT_JUMP_FROM
 }
 
 
@@ -62,7 +61,7 @@ func get_jumpers_between(plaftorm: PlatformModel, map: Array[Array]) -> Array[Ju
 	var check_path: Vector2i = plaftorm.get_coordinates() + step
 	while check_path != _coordinates:
 		var platform_between: PlatformModel = map[check_path.x][check_path.y]
-		if platform_between.has_jumper():
+		if platform_between != null and platform_between.has_jumper():
 			jumpers.append(platform_between.get_jumper())
 		check_path += step
 	return jumpers

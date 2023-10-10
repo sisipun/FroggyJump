@@ -7,9 +7,11 @@ signal clicked(x, y)
 
 @export_node_path("CollisionShape2D") var _shape_path: NodePath
 @export_node_path("AnimatedSprite2D") var _body_path: NodePath
+@export_node_path("AnimatedSprite2D") var _effect_path: NodePath
 
 @onready var _shape: CollisionShape2D = get_node(_shape_path)
 @onready var _body: AnimatedSprite2D = get_node(_body_path)
+@onready var _effect: AnimatedSprite2D = get_node(_effect_path)
 
 var coordinates: Vector2i
 
@@ -23,13 +25,19 @@ var jumper: Jumper = null :
 		jumper.position = position
 
 
-func init(_coordinates: Vector2i, _position: Vector2, _size: Vector2) -> Platform:
+func init(
+	_coordinates: Vector2i, 
+	_position: Vector2, 
+	_size: Vector2,
+	_sprite_frames: SpriteFrames
+) -> Platform:
 	coordinates = _coordinates
 	position = _position
 	scale = Vector2(
 		_size.x / _shape.shape.get_rect().size.x, 
 		_size.y / _shape.shape.get_rect().size.y
 	)
+	_body.sprite_frames = _sprite_frames
 	return self
 
 
@@ -43,15 +51,15 @@ func has_jumper() -> bool:
 
 
 func show_as_default() -> void:
-	_body.play("default")
+	_effect.play("default")
 
 
 func show_as_current() -> void:
-	_body.play("current")
+	_effect.play("current")
 
 
 func show_as_possible_move() -> void:
-	_body.play("possible_move")
+	_effect.play("possible_move")
 
 
 func remove_jumper() -> void:

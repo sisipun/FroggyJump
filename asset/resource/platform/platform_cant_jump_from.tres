@@ -1,6 +1,19 @@
-[gd_resource type="Resource" script_class="PlatformResource" load_steps=2 format=3 uid="uid://b7w8px2c71kbl"]
+[gd_resource type="Resource" script_class="PlatformResource" load_steps=4 format=3 uid="uid://b7w8px2c71kbl"]
 
-[ext_resource type="Script" path="res://script/game_state/resource/platform_resource.gd" id="1_nljcn"]
+[ext_resource type="Script" path="res://script/game_state/resource/platform/platform_resource.gd" id="1_nljcn"]
+[ext_resource type="Texture2D" uid="uid://cdnpvcyku6sq4" path="res://asset/image/level/platform/platform_cant_jump_from.svg" id="2_ls14o"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_34d4x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ls14o")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [resource]
 script = ExtResource("1_nljcn")
+sprite_frames = SubResource("SpriteFrames_34d4x")

@@ -1,8 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://dlah24y8wji6v"]
-
-[ext_resource type="Script" path="res://script/game_state/storage/level_storage.gd" id="1_fjihp"]
-[ext_resource type="Resource" uid="uid://cttduc41r0qoc" path="res://asset/resource/level/1_level.tres" id="2_t4o83"]
-
-[node name="LevelStorage" type="Node"]
-script = ExtResource("1_fjihp")
-_levels = Array[Resource("res://script/game_state/resource/level_resource.gd")]([ExtResource("2_t4o83")])

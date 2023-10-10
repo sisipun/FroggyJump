@@ -1,6 +1,19 @@
-[gd_resource type="Resource" script_class="PlatformResource" load_steps=2 format=3 uid="uid://bap05klorw4n5"]
+[gd_resource type="Resource" script_class="PlatformResource" load_steps=4 format=3 uid="uid://bap05klorw4n5"]
 
-[ext_resource type="Script" path="res://script/game_state/resource/platform_resource.gd" id="1_ktid3"]
+[ext_resource type="Script" path="res://script/game_state/resource/platform/platform_resource.gd" id="1_ktid3"]
+[ext_resource type="Texture2D" uid="uid://dxewydungafbf" path="res://asset/image/level/platform/platform.svg" id="2_7xkne"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u2let"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_7xkne")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [resource]
 script = ExtResource("1_ktid3")
+sprite_frames = SubResource("SpriteFrames_u2let")
