@@ -1,10 +1,10 @@
 [gd_scene load_steps=9 format=3 uid="uid://ck3vduaa2t5wp"]
 
 [ext_resource type="Script" path="res://script/level/platform/platform.gd" id="1_oi57p"]
-[ext_resource type="Texture2D" uid="uid://b31pmxrjtesbq" path="res://asset/image/level/platform/platform_effect_current.svg" id="3_1t87p"]
+[ext_resource type="Texture2D" uid="uid://b31pmxrjtesbq" path="res://asset/image/level/platform/effect/platform_effect_current.svg" id="3_cg1eq"]
 [ext_resource type="Texture2D" uid="uid://dxewydungafbf" path="res://asset/image/level/platform/platform.svg" id="3_ifswa"]
-[ext_resource type="Texture2D" uid="uid://cuxuifv56tb8k" path="res://asset/image/level/platform/platform_effect_possible_move.svg" id="4_fek3o"]
-[ext_resource type="Texture2D" uid="uid://duoyx4k62caas" path="res://asset/image/level/platform/platform_effect_default.svg" id="4_nosmd"]
+[ext_resource type="Texture2D" uid="uid://duoyx4k62caas" path="res://asset/image/level/platform/effect/platform_effect_default.svg" id="4_juwdt"]
+[ext_resource type="Texture2D" uid="uid://cuxuifv56tb8k" path="res://asset/image/level/platform/effect/platform_effect_possible_move.svg" id="5_pbxub"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_04vlr"]
 radius = 64.0
@@ -24,7 +24,7 @@ animations = [{
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_1t87p")
+"texture": ExtResource("3_cg1eq")
 }],
 "loop": true,
 "name": &"current",
@@ -32,7 +32,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_nosmd")
+"texture": ExtResource("4_juwdt")
 }],
 "loop": true,
 "name": &"default",
@@ -40,7 +40,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_fek3o")
+"texture": ExtResource("5_pbxub")
 }],
 "loop": true,
 "name": &"possible_move",

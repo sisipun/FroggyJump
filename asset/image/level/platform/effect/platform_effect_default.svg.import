@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b31pmxrjtesbq"
-path="res://.godot/imported/platform_effect_current.svg-0507b5c4967e4bccf37bc1adbf07a16b.ctex"
+uid="uid://duoyx4k62caas"
+path="res://.godot/imported/platform_effect_default.svg-cede6f5087613d7a545cd689068972cc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://asset/image/level/platform/platform_effect_current.svg"
-dest_files=["res://.godot/imported/platform_effect_current.svg-0507b5c4967e4bccf37bc1adbf07a16b.ctex"]
+source_file="res://asset/image/level/platform/effect/platform_effect_default.svg"
+dest_files=["res://.godot/imported/platform_effect_default.svg-cede6f5087613d7a545cd689068972cc.ctex"]
 
 [params]
 

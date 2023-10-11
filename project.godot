@@ -25,8 +25,8 @@ Levels="*res://script/game_state/storage/level/level_storage.tscn"
 
 [display]
 
-window/size/viewport_width=500
-window/size/viewport_height=1000
+window/size/viewport_width=1080
+window/size/viewport_height=1920
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 window/handheld/orientation=1

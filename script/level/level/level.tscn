@@ -5,14 +5,14 @@
 [ext_resource type="PackedScene" uid="uid://ck3vduaa2t5wp" path="res://script/level/platform/platform.tscn" id="3_iawh1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xy8qr"]
-size = Vector2(400, 800)
+size = Vector2(1000, 1000)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_1xlqg"]
-a = Vector2(-180, -380)
-b = Vector2(180, 380)
+a = Vector2(-500, -500)
+b = Vector2(500, 500)
 
 [node name="Level" type="Area2D"]
-position = Vector2(250, 500)
+position = Vector2(540, 990)
 script = ExtResource("1_it2ax")
 _spawn_area_path = NodePath("SpawnArea")
 _platforms_path = NodePath("Platforms")
