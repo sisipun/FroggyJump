@@ -41,7 +41,7 @@ func clear() -> void:
 	_level_model.jumper_moved.disconnect(_on_jumper_moved)
 	_level_model.jumper_hitted.disconnect(_on_jumper_hitted)
 	_level_model.jumper_dead.disconnect(_on_jumper_dead)
-	_level_model.completed.disconnect(_on_completed)
+	_level_model.finished.disconnect(_on_level_finished)
 	_level_model = null
 	
 	for line in _platform_map:
@@ -60,7 +60,7 @@ func start() -> void:
 	_level_model.jumper_moved.connect(_on_jumper_moved)
 	_level_model.jumper_hitted.connect(_on_jumper_hitted)
 	_level_model.jumper_dead.connect(_on_jumper_dead)
-	_level_model.completed.connect(_on_completed)
+	_level_model.finished.connect(_on_level_finished)
 	
 	var spawn_area_size: Vector2 = _spawn_area.shape.b - _spawn_area.shape.a
 	var level_size: Vector2 = Vector2(_level_model.get_width(), _level_model.get_height())
@@ -101,6 +101,7 @@ func start() -> void:
 				platform.jumper = jumper
 			
 			_platform_map[x].append(platform)
+	Events.emit_signal("level_started", _level_id)
 
 
 func _on_platform_clicked(x: int, y: int) -> void:
@@ -143,10 +144,12 @@ func _on_jumper_dead(x: int, y: int) -> void:
 	_remove_jumper(x, y)
 
 
-func _on_completed(won: bool) -> void:
-	print('won' if won else 'lost')
-	clear()
-	start()
+func _on_level_finished(won: bool) -> void:
+	if won:
+		Events.emit_signal("level_completed", _level_id)
+	else:
+		clear()
+		start()
 
 
 func _remove_jumper(x: int, y: int) -> void:

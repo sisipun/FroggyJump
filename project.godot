@@ -19,6 +19,8 @@ config/icon="res://asset/icon/icon.svg"
 
 [autoload]
 
+Events="*res://script/game_state/storage/event/event_storage.gd"
+Games="res://script/game_state/storage/game/game_storage.tscn"
 Jumpers="*res://script/game_state/storage/jumper/jumper_storage.tscn"
 Platforms="*res://script/game_state/storage/platform/platform_storage.tscn"
 Levels="*res://script/game_state/storage/level/level_storage.tscn"

@@ -7,7 +7,7 @@ signal unselected(x, y)
 signal jumper_moved(x_from, y_from, x_to, y_to)
 signal jumper_hitted(x, y, current_health)
 signal jumper_dead(x, y)
-signal completed(won)
+signal finished(won)
 
 
 var _width: int
@@ -46,7 +46,7 @@ func _init(
 			_map[x].append(platform_model)
 
 
-func is_completed() -> bool:
+func is_finished() -> bool:
 	for x in range(_width):
 		for y in range(_height):
 			if get_possible_moves(x, y) != []:
@@ -119,8 +119,8 @@ func select(x: int, y: int) -> void:
 	
 	emit_signal("unselected", selected_coordinates.x, selected_coordinates.y)
 	_selected_platform = null
-	if is_completed():
-		emit_signal("completed", is_won())
+	if is_finished():
+		emit_signal("finished", is_won())
 
 
 func _try_move(x_from: int, y_from: int, x_to: int, y_to: int) -> bool:
