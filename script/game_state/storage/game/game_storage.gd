@@ -30,6 +30,7 @@ func _ready() -> void:
 
 func _on_level_started(level_id: String) -> void:
 	game.current_level_id = level_id
+	print(game.current_level_id)
 	save()
 	Events.emit_signal("game_updated", game)
 

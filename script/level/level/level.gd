@@ -12,7 +12,6 @@ extends Area2D
 @onready var _platforms: Node2D = get_node(_platforms_path)
 @onready var _jumpers: Node2D = get_node(_jumpers_path)
 
-@export var _level_id: String
 @export var _platform_margin: Vector2 
 
 var _platform_map: Array[Array] = []
@@ -23,13 +22,19 @@ var _selected_possible_moves: Array[Vector2i] = []
 func _ready() -> void:
 	_on_window_size_changed()
 	get_viewport().size_changed.connect(_on_window_size_changed)
+	Events.level_start_request.connect(_on_level_start_request)
 	
 	clear()
-	start()
+	start(Levels.get_current_level_id())
 
 
 func _on_window_size_changed() -> void:
 	position = get_viewport_rect().size / 2
+
+
+func _on_level_start_request(level_id: String) -> void:
+	clear()
+	start(level_id)
 
 
 func clear() -> void:
@@ -41,7 +46,7 @@ func clear() -> void:
 	_level_model.jumper_moved.disconnect(_on_jumper_moved)
 	_level_model.jumper_hitted.disconnect(_on_jumper_hitted)
 	_level_model.jumper_dead.disconnect(_on_jumper_dead)
-	_level_model.finished.disconnect(_on_level_finished)
+	_level_model.finished.disconnect(Callable(self, "_on_level_finished"))
 	_level_model = null
 	
 	for line in _platform_map:
@@ -53,14 +58,14 @@ func clear() -> void:
 	_platform_map.clear()
 
 
-func start() -> void:
-	_level_model = Levels.get_model_by_id(_level_id)
+func start(level_id: String) -> void:
+	_level_model = Levels.get_model_by_id(level_id)
 	_level_model.selected.connect(_on_selected)
 	_level_model.unselected.connect(_on_unselected)
 	_level_model.jumper_moved.connect(_on_jumper_moved)
 	_level_model.jumper_hitted.connect(_on_jumper_hitted)
 	_level_model.jumper_dead.connect(_on_jumper_dead)
-	_level_model.finished.connect(_on_level_finished)
+	_level_model.finished.connect(Callable(self, "_on_level_finished").bind(level_id))
 	
 	var spawn_area_size: Vector2 = _spawn_area.shape.b - _spawn_area.shape.a
 	var level_size: Vector2 = Vector2(_level_model.get_width(), _level_model.get_height())
@@ -101,7 +106,7 @@ func start() -> void:
 				platform.jumper = jumper
 			
 			_platform_map[x].append(platform)
-	Events.emit_signal("level_started", _level_id)
+	Events.emit_signal("level_started", level_id)
 
 
 func _on_platform_clicked(x: int, y: int) -> void:
@@ -144,12 +149,13 @@ func _on_jumper_dead(x: int, y: int) -> void:
 	_remove_jumper(x, y)
 
 
-func _on_level_finished(won: bool) -> void:
+func _on_level_finished(won: bool, level_id: String) -> void:
 	if won:
-		Events.emit_signal("level_completed", _level_id)
+		Events.emit_signal("level_completed", level_id)
+		Events.emit_signal("level_start_request", Levels.get_next_level_id(level_id))
 	else:
 		clear()
-		start()
+		start(level_id)
 
 
 func _remove_jumper(x: int, y: int) -> void:

@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="LevelResource" load_steps=6 format=3 uid="uid://bhxa0qojuvjrc"]
+
+[ext_resource type="Script" path="res://script/game_state/resource/level/level_cell_custom_resource.gd" id="1_0k40c"]
+[ext_resource type="Script" path="res://script/game_state/resource/level/level_cell_resource.gd" id="2_sc5g6"]
+[ext_resource type="Script" path="res://script/game_state/resource/level/level_resource.gd" id="3_v4e55"]
+
+[sub_resource type="Resource" id="Resource_pbx3r"]
+script = ExtResource("1_0k40c")
+coordinates = Vector2i(2, 2)
+platfrom = 1
+jumper = 0
+
+[sub_resource type="Resource" id="Resource_8k2ry"]
+script = ExtResource("2_sc5g6")
+platfrom = 1
+jumper = 1
+
+[resource]
+script = ExtResource("3_v4e55")
+id = "2"
+width = 5
+height = 5
+win_condition = 5
+default_cell = SubResource("Resource_8k2ry")
+custom_cells = Array[ExtResource("1_0k40c")]([SubResource("Resource_pbx3r")])
