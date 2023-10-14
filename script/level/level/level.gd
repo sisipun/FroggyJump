@@ -23,49 +23,18 @@ func _ready() -> void:
 	_on_window_size_changed()
 	get_viewport().size_changed.connect(_on_window_size_changed)
 	Events.level_start_request.connect(_on_level_start_request)
-	
-	clear()
-	start(Levels.get_current_level_id())
-
-
-func _on_window_size_changed() -> void:
-	position = get_viewport_rect().size / 2
-
-
-func _on_level_start_request(level_id: String) -> void:
-	clear()
-	start(level_id)
 
 
 func clear() -> void:
-	if _level_model == null:
-		return
-	
-	_level_model.selected.disconnect(_on_selected)
-	_level_model.unselected.disconnect(_on_unselected)
-	_level_model.jumper_moved.disconnect(_on_jumper_moved)
-	_level_model.jumper_hitted.disconnect(_on_jumper_hitted)
-	_level_model.jumper_dead.disconnect(_on_jumper_dead)
-	_level_model.finished.disconnect(Callable(self, "_on_level_finished"))
-	_level_model = null
-	
+	_remove_level_model()
 	for line in _platform_map:
 		for platform in line:
-			if platform != null:
-				_remove_jumper(platform.coordinates.x, platform.coordinates.y)
-				platform.clicked.disconnect(_on_platform_clicked)
-				platform.queue_free()
+			_remove_platform(platform)
 	_platform_map.clear()
 
 
 func start(level_id: String) -> void:
-	_level_model = Levels.get_model_by_id(level_id)
-	_level_model.selected.connect(_on_selected)
-	_level_model.unselected.connect(_on_unselected)
-	_level_model.jumper_moved.connect(_on_jumper_moved)
-	_level_model.jumper_hitted.connect(_on_jumper_hitted)
-	_level_model.jumper_dead.connect(_on_jumper_dead)
-	_level_model.finished.connect(Callable(self, "_on_level_finished").bind(level_id))
+	_level_model = _create_level_model(level_id)
 	
 	var spawn_area_size: Vector2 = _spawn_area.shape.b - _spawn_area.shape.a
 	var level_size: Vector2 = Vector2(_level_model.get_width(), _level_model.get_height())
@@ -79,37 +48,45 @@ func start(level_id: String) -> void:
 				_platform_map[x].append(null)
 				continue
 			
+			var spawn_position: Vector2 = (
+				_spawn_area.shape.a 
+				+ _platform_margin 
+				+ (platform_size / 2) 
+				+ Vector2(x, y) * (_platform_margin + platform_size)
+			)
+			
 			var platform_model: PlatformModel = _level_model.get_platform(x, y)
-			var platform_resource: PlatformResource = Platforms.get_resource_by_type(platform_model.get_type())
-			var spawn_position = _spawn_area.shape.a + _platform_margin + (platform_size / 2) + Vector2(x, y) * (_platform_margin + platform_size)
-			var platform: Platform = _platform_scene.instantiate()
-			_platforms.add_child(platform)
-			platform.init(
-				platform_model.get_coordinates(), 
+			var platform: Platform = _create_platform(
 				spawn_position, 
 				platform_size, 
-				platform_resource.sprite_frames
+				platform_model
 			)
-			platform.clicked.connect(_on_platform_clicked)
 			
 			if platform_model.has_jumper():
 				var jumper_model: JumperModel = platform_model.get_jumper()
-				var jumper_resource: JumperResource = Jumpers.get_resource_by_type(jumper_model.get_type())
-				var jumper: Jumper = _jumper_scene.instantiate()
-				_jumpers.add_child(jumper)
-				jumper.init(
-					jumper_size, 
-					jumper_model.get_jump_distance(), 
-					jumper_model.get_health(), 
-					jumper_resource.sprite_frames
-				)
-				platform.jumper = jumper
+				platform.jumper = _create_jumper(jumper_size, jumper_model)
 			
 			_platform_map[x].append(platform)
+	
 	Events.emit_signal("level_started", level_id)
 
 
+func restart(level_id: String) -> void:
+	clear()
+	start(level_id)
+
+
+func _on_window_size_changed() -> void:
+	position = get_viewport_rect().size / 2
+
+
+func _on_level_start_request(level_id: String) -> void:
+	clear()
+	start(level_id)
+
+
 func _on_platform_clicked(x: int, y: int) -> void:
+	print('go')
 	_level_model.select(x, y)
 
 
@@ -150,17 +127,79 @@ func _on_jumper_dead(x: int, y: int) -> void:
 
 
 func _on_level_finished(won: bool, level_id: String) -> void:
-	if won:
-		Events.emit_signal("level_completed", level_id)
-		Events.emit_signal("level_start_request", Levels.get_next_level_id(level_id))
-	else:
-		clear()
-		start(level_id)
+	if not won:
+		restart(level_id)
+		return
+	
+	Events.emit_signal("level_completed", level_id)
+
+
+func _create_level_model(level_id: String) -> LevelModel:
+	var level_model: LevelModel = Levels.get_model_by_id(level_id)
+	level_model.selected.connect(_on_selected)
+	level_model.unselected.connect(_on_unselected)
+	level_model.jumper_moved.connect(_on_jumper_moved)
+	level_model.jumper_hitted.connect(_on_jumper_hitted)
+	level_model.jumper_dead.connect(_on_jumper_dead)
+	level_model.finished.connect(Callable(self, "_on_level_finished").bind(level_id))
+	return level_model
+
+
+func _remove_level_model() -> void:
+	if _level_model == null:
+		return
+	
+	_level_model.selected.disconnect(_on_selected)
+	_level_model.unselected.disconnect(_on_unselected)
+	_level_model.jumper_moved.disconnect(_on_jumper_moved)
+	_level_model.jumper_hitted.disconnect(_on_jumper_hitted)
+	_level_model.jumper_dead.disconnect(_on_jumper_dead)
+	_level_model.finished.disconnect(_on_level_finished)
+	_level_model = null
+
+
+func _create_platform(spawn_position: Vector2, size: Vector2, platform_model: PlatformModel) -> Platform:
+	var platform_resource: PlatformResource = Platforms.get_resource_by_type(platform_model.get_type())
+	var platform: Platform = _platform_scene.instantiate()
+	_platforms.add_child(platform)
+	platform.init(
+		platform_model.get_coordinates(), 
+		spawn_position, 
+		size, 
+		platform_resource.sprite_frames
+	)
+	platform.clicked.connect(_on_platform_clicked)
+	return platform
+
+
+func _remove_platform(platform: Platform) -> void:
+	if platform == null:
+		return
+	
+	var coordinates = platform.coordinates
+	_remove_jumper(coordinates.x, coordinates.y)
+	platform.clicked.disconnect(_on_platform_clicked)
+	platform.queue_free()
+
+
+func _create_jumper(size: Vector2, jumper_model: JumperModel) -> Jumper:
+	var jumper_resource: JumperResource = Jumpers.get_resource_by_type(jumper_model.get_type())
+	var jumper: Jumper = _jumper_scene.instantiate()
+	_jumpers.add_child(jumper)
+	jumper.init(
+		size, 
+		jumper_model.get_jump_distance(), 
+		jumper_model.get_health(), 
+		jumper_resource.sprite_frames
+	)
+	return jumper
 
 
 func _remove_jumper(x: int, y: int) -> void:
 	var platform: Platform = _platform_map[x][y]
-	if platform.has_jumper():
-		var jumper: Jumper = platform.jumper
-		platform.remove_jumper()
-		jumper.queue_free()
+	if not platform.has_jumper():
+		return
+	
+	var jumper: Jumper = platform.jumper
+	platform.remove_jumper()
+	jumper.queue_free()

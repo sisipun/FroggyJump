@@ -14,6 +14,7 @@ func _ready() -> void:
 	for level in _levels:
 		_id_to_level[level.id] = level
 		_level_ids.append(level.id)
+	_current_level_id = Games.game.current_level_id if Games.game.current_level_id else _level_ids[0]
 
 
 func get_resource_by_id(id: String) -> LevelResource:
@@ -34,8 +35,6 @@ func get_next_level_id(id: String) -> String:
 
 
 func get_current_level_id() -> String:
-	if not _current_level_id:
-		return _level_ids[0]
 	return _current_level_id
 
 

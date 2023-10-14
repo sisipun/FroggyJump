@@ -1,7 +1,33 @@
-[gd_scene load_steps=2 format=3 uid="uid://3s12voxr5i2v"]
+[gd_scene load_steps=5 format=3 uid="uid://3s12voxr5i2v"]
 
+[ext_resource type="Script" path="res://script/game.gd" id="1_7ywwe"]
 [ext_resource type="PackedScene" uid="uid://bmkyw0bd5yf7g" path="res://script/level/level/level.tscn" id="1_sv3j7"]
+[ext_resource type="PackedScene" uid="uid://d38xc7h07i1xh" path="res://script/interface/interace.tscn" id="2_u6qka"]
+[ext_resource type="PackedScene" uid="uid://bwr5y4lt7rg4b" path="res://script/interface/popup/complete/level_complete_popup.tscn" id="4_rgnhr"]
 
 [node name="Game" type="Node"]
+script = ExtResource("1_7ywwe")
 
-[node name="Level" parent="." instance=ExtResource("1_sv3j7")]
+[node name="BackgroundLayer" type="CanvasLayer" parent="."]
+layer = 0
+
+[node name="Background" type="ColorRect" parent="BackgroundLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.490196, 0.490196, 0.490196, 1)
+
+[node name="LevelLayer" type="CanvasLayer" parent="."]
+
+[node name="Level" parent="LevelLayer" instance=ExtResource("1_sv3j7")]
+
+[node name="InterfaceLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="Interace" parent="InterfaceLayer" instance=ExtResource("2_u6qka")]
+_level_complete_popup_path = NodePath("LevelCompletePopup")
+
+[node name="LevelCompletePopup" parent="InterfaceLayer/Interace" instance=ExtResource("4_rgnhr")]
+layout_mode = 1
