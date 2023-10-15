@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://b0nr3hp5l3m0s"]
+
+[ext_resource type="Script" path="res://script/interface/popup/level_list/level_preview.gd" id="1_uj1hw"]
+
+[node name="LevelPreview" type="Panel"]
+custom_minimum_size = Vector2(500, 200)
+offset_right = 500.0
+offset_bottom = 200.0
+script = ExtResource("1_uj1hw")
+_name_label_path = NodePath("Name")
+
+[node name="Name" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

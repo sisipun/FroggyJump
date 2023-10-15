@@ -6,7 +6,7 @@ extends Node
 
 var _current_level_id: String
 var _id_to_level: Dictionary = {}
-var _level_ids: Array = []
+var _level_ids: Array[String] = []
 
 
 func _ready() -> void:
@@ -32,6 +32,10 @@ func get_next_level_id(id: String) -> String:
 	if next_index == _level_ids.size():
 		next_index = 0
 	return _level_ids[next_index]
+
+
+func get_level_ids() -> Array[String]:
+	return _level_ids
 
 
 func get_current_level_id() -> String:
