@@ -86,7 +86,6 @@ func _on_level_start_request(level_id: String) -> void:
 
 
 func _on_platform_clicked(x: int, y: int) -> void:
-	print('go')
 	_level_model.select(x, y)
 
 

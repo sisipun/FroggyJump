@@ -29,6 +29,7 @@ layer = 2
 
 [node name="Interace" parent="InterfaceLayer" instance=ExtResource("2_u6qka")]
 _level_complete_popup_path = NodePath("LevelCompletePopup")
+_level_list_popup_path = NodePath("LevelListPopup")
 
 [node name="LevelCompletePopup" parent="InterfaceLayer/Interace" instance=ExtResource("4_rgnhr")]
 visible = false

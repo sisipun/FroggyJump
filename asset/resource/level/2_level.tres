@@ -21,5 +21,7 @@ id = "2"
 width = 5
 height = 5
 win_condition = 5
+two_star_condition = 0
+three_start_condition = 0
 default_cell = SubResource("Resource_8k2ry")
 custom_cells = Array[ExtResource("1_0k40c")]([SubResource("Resource_pbx3r")])

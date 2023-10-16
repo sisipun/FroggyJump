@@ -19,4 +19,4 @@ func _on_next_button_pressed() -> void:
 
 
 func _on_home_buttom_pressed() -> void:
-	pass
+	Events.emit_signal("home_return_request")
