@@ -7,12 +7,27 @@ custom_minimum_size = Vector2(500, 200)
 offset_right = 500.0
 offset_bottom = 200.0
 script = ExtResource("1_uj1hw")
-_name_label_path = NodePath("Name")
+_name_label_path = NodePath("HBoxContainer/Name")
+_stars_label_path = NodePath("HBoxContainer/Stars")
 
-[node name="Name" type="Label" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Name" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Stars" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+horizontal_alignment = 1
+vertical_alignment = 1

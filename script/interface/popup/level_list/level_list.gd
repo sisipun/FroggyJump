@@ -9,7 +9,7 @@ func _ready() -> void:
 	for level_id in Levels.get_level_ids():
 		var level_preview: LevelPreview = level_preview_scene.instantiate()
 		add_child(level_preview)
-		level_preview.init(level_id)
+		level_preview.init(level_id, Levels.get_stars(level_id))
 		level_preview.pressed.connect(Callable(_on_level_pressed).bind(level_preview))
 
 

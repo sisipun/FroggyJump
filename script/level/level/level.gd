@@ -125,12 +125,12 @@ func _on_jumper_dead(x: int, y: int) -> void:
 	_remove_jumper(x, y)
 
 
-func _on_level_finished(won: bool, level_id: String) -> void:
+func _on_level_finished(won: bool, stars: int, level_id: String) -> void:
 	if not won:
 		restart(level_id)
 		return
 	
-	Events.emit_signal("level_completed", level_id)
+	Events.emit_signal("level_completed", level_id, stars)
 
 
 func _create_level_model(level_id: String) -> LevelModel:

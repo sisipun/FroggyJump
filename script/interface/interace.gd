@@ -23,7 +23,7 @@ func _on_level_started(_level_id: String) -> void:
 	_level_list_popup.hide()
 
 
-func _on_level_completed(_level_id: String) -> void:
+func _on_level_completed(_level_id: String, _stars: int) -> void:
 	_level_complete_popup.show()
 
 

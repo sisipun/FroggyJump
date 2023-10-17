@@ -7,12 +7,14 @@ signal unselected(x, y)
 signal jumper_moved(x_from, y_from, x_to, y_to)
 signal jumper_hitted(x, y, current_health)
 signal jumper_dead(x, y)
-signal finished(won)
+signal finished(won, stars)
 
 
 var _width: int
 var _height: int
 var _win_condition: int
+var _two_star_condition: int
+var _three_star_condition: int
 var _map: Array[Array]
 
 var _selected_platform: PlatformModel
@@ -21,13 +23,17 @@ var _selected_platform: PlatformModel
 func _init(
 	width: int, 
 	height: int, 
-	win_condition: int, 
+	win_condition: int,
+	two_star_condition: int,
+	three_star_condition: int,
 	default_cell: LevelCellResource, 
 	custom_cells: Array[LevelCellCustomResource]
 ) -> void:
 	_width = width
 	_height = height
 	_win_condition = win_condition
+	_two_star_condition = two_star_condition
+	_three_star_condition = three_star_condition
 	var _custom_cells: Dictionary = {}
 	for custom_cell in custom_cells:
 		_custom_cells[custom_cell.coordinates] = custom_cell
@@ -57,6 +63,19 @@ func is_finished() -> bool:
 
 func is_won() -> bool:
 	return get_jumpers_count() <= _win_condition
+
+
+func get_stars() -> int:
+	if not is_won():
+		return 0
+	
+	var jumpers_count: int = get_jumpers_count()
+	if jumpers_count <= _three_star_condition:
+		return 3
+	elif jumpers_count <= _two_star_condition:
+		return 2
+	else:
+		return 1
 
 
 func get_width() -> int:
@@ -120,7 +139,7 @@ func select(x: int, y: int) -> void:
 	emit_signal("unselected", selected_coordinates.x, selected_coordinates.y)
 	_selected_platform = null
 	if is_finished():
-		emit_signal("finished", is_won())
+		emit_signal("finished", is_won(), get_stars())
 
 
 func _try_move(x_from: int, y_from: int, x_to: int, y_to: int) -> bool:

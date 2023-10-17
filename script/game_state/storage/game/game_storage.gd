@@ -34,12 +34,17 @@ func _on_level_started(level_id: String) -> void:
 	Events.emit_signal("game_updated", game)
 
 
-func _on_level_completed(level_id: String) -> void:
+func _on_level_completed(level_id: String, stars: int) -> void:
 	var levels = game.levels.filter(func(level): return level.id == level_id)
 	if levels.size() == 0:
-		game.levels.push_back(LevelData.new(level_id))
+		game.levels.push_back(LevelData.new(level_id, stars))
 		save()
-		Events.emit_signal("game_updated", game)
+		Events.emit_signal("game_stars_updated", level_id, stars)
+	else:
+		var level: LevelData = levels[0]
+		level.stars = max(level.stars, stars)
+		save()
+		Events.emit_signal("game_stars_updated", level.id, level.stars)
 
 
 func save() -> void:
