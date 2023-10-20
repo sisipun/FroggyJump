@@ -28,7 +28,14 @@ func has_jumper() -> bool:
 
 
 func can_jump_to(jump_from: PlatformModel, map: Array[Array]) -> bool:
-	return not has_jumper() and not get_jumpers_between(jump_from, map).is_empty()
+	if has_jumper():
+		return false
+	
+	for platform_between in get_platforms_between(jump_from, map):
+		if platform_between.has_jumper():
+			return true
+	
+	return false
 
 
 func get_coordinates() -> Vector2i:
@@ -50,8 +57,8 @@ func get_jumper_move_range(map_width: int, map_height: int) -> Array[Vector2i]:
 	return _jumper.get_move_range(map_width, map_height)
 
 
-func get_jumpers_between(plaftorm: PlatformModel, map: Array[Array]) -> Array[JumperModel]:
-	var jumpers: Array[JumperModel] = []
+func get_platforms_between(plaftorm: PlatformModel, map: Array[Array]) -> Array[PlatformModel]:
+	var platforms_between: Array[PlatformModel] = []
 	var distance: Vector2i = _coordinates - plaftorm.get_coordinates()
 	var distance_max: int = max(abs(distance.x), abs(distance.y))
 	if distance_max == 0:
@@ -61,10 +68,10 @@ func get_jumpers_between(plaftorm: PlatformModel, map: Array[Array]) -> Array[Ju
 	var check_path: Vector2i = plaftorm.get_coordinates() + step
 	while check_path != _coordinates:
 		var platform_between: PlatformModel = map[check_path.x][check_path.y]
-		if platform_between != null and platform_between.has_jumper():
-			jumpers.append(platform_between.get_jumper())
+		if platform_between != null:
+			platforms_between.append(platform_between)
 		check_path += step
-	return jumpers
+	return platforms_between
 
 
 func add_jumper(jumper: JumperModel) -> void:
@@ -74,6 +81,11 @@ func add_jumper(jumper: JumperModel) -> void:
 		_jumper.move_to(_coordinates)
 		_jumper.hitted.connect(_on_jumper_hitted)
 		_jumper.dead.connect(_on_jumper_dead)
+
+
+func hit_jumper() -> void:
+	if has_jumper():
+		_jumper.hit()
 
 
 func clear_jumper() -> void:

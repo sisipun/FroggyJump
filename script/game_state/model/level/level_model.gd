@@ -155,9 +155,9 @@ func _try_move(x_from: int, y_from: int, x_to: int, y_to: int) -> bool:
 	var jumper: JumperModel = from_platform.get_jumper()
 	from_platform.clear_jumper()
 	
-	var jumpers_between: Array[JumperModel] = from_platform.get_jumpers_between(to_platform, _map)
-	for jumper_between in jumpers_between:
-		jumper_between.hit()
+	var platforms_between: Array[PlatformModel] = from_platform.get_platforms_between(to_platform, _map)
+	for platform_between in platforms_between:
+		platform_between.hit_jumper()
 	
 	_map[x_to][y_to].add_jumper(jumper)
 	emit_signal("jumper_moved", x_from, y_from, x_to, y_to)
