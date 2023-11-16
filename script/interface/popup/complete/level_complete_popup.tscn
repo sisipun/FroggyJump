@@ -10,10 +10,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_htowc")
-_next_button_path = NodePath("HBoxContainer/NextButton")
-_home_button_path = NodePath("HBoxContainer/HomeButton")
+_next_button_path = NodePath("Buttons/NextButton")
+_home_button_path = NodePath("Buttons/HomeButton")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -22,7 +22,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.490196, 0.490196, 0.490196, 1)
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="Buttons" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -38,11 +38,11 @@ grow_vertical = 2
 theme_override_constants/separation = 50
 alignment = 1
 
-[node name="NextButton" type="Button" parent="HBoxContainer"]
+[node name="NextButton" type="Button" parent="Buttons"]
 layout_mode = 2
 text = "Next"
 
-[node name="HomeButton" type="Button" parent="HBoxContainer"]
+[node name="HomeButton" type="Button" parent="Buttons"]
 layout_mode = 2
 text = "Home
 "

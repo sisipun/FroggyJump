@@ -6,6 +6,7 @@ extends Node
 signal game_updated(game)
 signal game_stars_updated(level_id, score)
 
+
 # LEVEL
 signal level_start_request(level_id)
 

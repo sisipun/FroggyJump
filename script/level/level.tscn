@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bmkyw0bd5yf7g"]
 
-[ext_resource type="Script" path="res://script/level/level/level.gd" id="1_it2ax"]
+[ext_resource type="Script" path="res://script/level/level.gd" id="1_it2ax"]
 [ext_resource type="PackedScene" uid="uid://dnxvurhl2cset" path="res://script/level/jumper/jumper.tscn" id="2_ldlum"]
 [ext_resource type="PackedScene" uid="uid://ck3vduaa2t5wp" path="res://script/level/platform/platform.tscn" id="3_iawh1"]
 
@@ -12,7 +12,7 @@ a = Vector2(-500, -500)
 b = Vector2(500, 500)
 
 [node name="Level" type="Area2D"]
-position = Vector2(540, 990)
+position = Vector2(540, 960)
 script = ExtResource("1_it2ax")
 _spawn_area_path = NodePath("SpawnArea")
 _platforms_path = NodePath("Platforms")
