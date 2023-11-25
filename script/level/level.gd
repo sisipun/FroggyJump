@@ -140,7 +140,7 @@ func _create_level_model(level_id: String) -> LevelModel:
 	level_model.jumper_moved.connect(_on_jumper_moved)
 	level_model.jumper_hitted.connect(_on_jumper_hitted)
 	level_model.jumper_dead.connect(_on_jumper_dead)
-	level_model.finished.connect(Callable(self, "_on_level_finished").bind(level_id))
+	level_model.finished.connect(Callable(_on_level_finished).bind(level_id))
 	return level_model
 
 
