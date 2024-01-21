@@ -39,12 +39,12 @@ func _on_level_completed(level_id: String, stars: int) -> void:
 	if levels.size() == 0:
 		game.levels.push_back(LevelData.new(level_id, stars))
 		save()
-		Events.emit_signal("game_stars_updated", level_id, stars)
+		Events.emit_signal("game_level_completed", level_id, stars)
 	else:
 		var level: LevelData = levels[0]
 		level.stars = max(level.stars, stars)
 		save()
-		Events.emit_signal("game_stars_updated", level.id, level.stars)
+		Events.emit_signal("game_level_completed", level.id, level.stars)
 
 
 func save() -> void:

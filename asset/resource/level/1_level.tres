@@ -55,3 +55,4 @@ _two_star_condition = 2
 _three_star_condition = 1
 default_cell = SubResource("Resource_8k2ry")
 custom_cells = Array[ExtResource("1_tu1vm")]([SubResource("Resource_yd6b5"), SubResource("Resource_bvqhv"), SubResource("Resource_gneva"), SubResource("Resource_5krmm"), SubResource("Resource_qrymg"), SubResource("Resource_yk01j")])
+required_levels = Array[String]([])

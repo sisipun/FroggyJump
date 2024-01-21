@@ -4,7 +4,7 @@ extends Node
 
 # GAME
 signal game_updated(game)
-signal game_stars_updated(level_id, score)
+signal game_level_completed(level_id, stars)
 
 
 # LEVEL

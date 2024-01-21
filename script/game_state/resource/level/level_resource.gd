@@ -10,6 +10,7 @@ extends Resource
 @export var _three_star_condition: int
 @export var default_cell: LevelCellResource
 @export var custom_cells: Array[LevelCellCustomResource]
+@export var required_levels: Array[String]
 
 
 func get_two_star_condition() -> int:

@@ -19,22 +19,26 @@ var stars: int:
 	set(value):
 		stars = value
 		_stars_label.text = str(stars)
+var enabled: bool
 
 
 func _ready() -> void:
-	Events.game_stars_updated.connect(_on_game_stars_updated)
+	Events.game_level_completed.connect(_on_game_level_completed)
 
 
 func init(_level_id: String, _stars: int) -> void:
-	self.level_id = _level_id
-	self.stars = _stars
+	level_id = _level_id
+	stars = _stars
+	enabled = Levels.is_enabled(level_id)
 
 
 func _gui_input(event: InputEvent) -> void:
-	if event is InputEventScreenTouch and !event.is_pressed():
+	if enabled and event is InputEventScreenTouch and !event.is_pressed():
 		emit_signal("pressed")
 
 
-func _on_game_stars_updated(_level_id: String, _stars: int) -> void:
+func _on_game_level_completed(_level_id: String, _stars: int) -> void:
 	if level_id == _level_id:
 		stars = Levels.get_stars(_level_id)
+	if not enabled:
+		enabled = Levels.is_enabled(level_id)

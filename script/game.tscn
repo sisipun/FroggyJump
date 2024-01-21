@@ -36,5 +36,4 @@ visible = false
 layout_mode = 1
 
 [node name="LevelListPopup" parent="InterfaceLayer/Interace" instance=ExtResource("5_usfuo")]
-visible = false
 layout_mode = 1
