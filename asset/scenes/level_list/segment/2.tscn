@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://tcr0800d70um"]
+
+[ext_resource type="PackedScene" uid="uid://fpa4qwwoxe08" path="res://script/interface/popup/level_list/level_list_segment.tscn" id="1_i4dic"]
+[ext_resource type="Texture2D" uid="uid://dvqp0d2eb504l" path="res://asset/image/level_list/segment/2.png" id="2_5lb3e"]
+
+[node name="LevelListSegment" instance=ExtResource("1_i4dic")]
+number = 2
+
+[node name="Background" parent="." index="0"]
+texture = ExtResource("2_5lb3e")

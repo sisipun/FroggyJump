@@ -1,0 +1,14 @@
+[gd_scene load_steps=6 format=3 uid="uid://buvdrd6b262t0"]
+
+[ext_resource type="PackedScene" uid="uid://cgfk56hbjap44" path="res://script/interface/common/component/container/lazy_scroll/lazy_scroll_container.tscn" id="1_qytlc"]
+[ext_resource type="PackedScene" uid="uid://d2d0xxi2aqce2" path="res://asset/scenes/level_list/segment/1.tscn" id="2_tu163"]
+[ext_resource type="PackedScene" uid="uid://tcr0800d70um" path="res://asset/scenes/level_list/segment/2.tscn" id="3_prt2g"]
+[ext_resource type="PackedScene" uid="uid://dh4y4deavq5hc" path="res://asset/scenes/level_list/segment/3.tscn" id="4_736r5"]
+[ext_resource type="PackedScene" uid="uid://61ktt56hhksf" path="res://asset/scenes/level_list/segment/4.tscn" id="5_xokqd"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="LazyScrollContainer" parent="." instance=ExtResource("1_qytlc")]
+scenes = Array[PackedScene]([ExtResource("2_tu163"), ExtResource("3_prt2g"), ExtResource("4_736r5"), ExtResource("5_xokqd")])
+
+[editable path="LazyScrollContainer"]

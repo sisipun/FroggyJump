@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="FroggyJump"
-run/main_scene="res://script/game.tscn"
+run/main_scene="res://script/laxy_scroll_test.tscn"
 config/features=PackedStringArray("4.1", "Mobile")
 boot_splash/bg_color=Color(1, 1, 1, 1)
 boot_splash/image="res://asset/image/loading/loading.png"

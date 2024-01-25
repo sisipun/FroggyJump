@@ -1,0 +1,34 @@
+[gd_scene load_steps=2 format=3 uid="uid://fpa4qwwoxe08"]
+
+[ext_resource type="Script" path="res://script/interface/popup/level_list/level_list_segment.gd" id="1_616gm"]
+
+[node name="LevelListSegment" type="Control"]
+custom_minimum_size = Vector2(1024, 1920)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 1
+script = ExtResource("1_616gm")
+
+[node name="Background" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="Previews" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1

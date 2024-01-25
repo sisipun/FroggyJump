@@ -23,9 +23,9 @@ func _ready() -> void:
 	Events.game_updated.connect(_on_game_updated)
 	Events.game_level_completed.connect(_on_game_level_completed)
 	for level in _levels:
+		_level_ids.append(level.id)
 		_id_to_resource[level.id] = level
 		_id_to_stats[level.id] = LevelStats.new()
-		_level_ids.append(level.id)
 	_current_level_id = _level_ids[0]
 
 
@@ -43,7 +43,7 @@ func get_model_by_id(id: String) -> LevelModel:
 		resource.get_three_star_condition(),
 		resource.default_cell, 
 		resource.custom_cells
-	)
+	) 
 
 
 func get_level_ids() -> Array[String]:

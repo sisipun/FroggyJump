@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://cgfk56hbjap44"]
+
+[ext_resource type="Script" path="res://script/interface/common/component/container/lazy_scroll/lazy_scroll_contaner.gd" id="1_53avr"]
+
+[node name="LazyScrollContainer" type="ScrollContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 3
+script = ExtResource("1_53avr")
+
+[node name="Scenes" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 0
