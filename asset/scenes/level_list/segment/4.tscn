@@ -1,10 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://61ktt56hhksf"]
 
 [ext_resource type="PackedScene" uid="uid://fpa4qwwoxe08" path="res://script/interface/popup/level_list/level_list_segment.tscn" id="1_d0fra"]
-[ext_resource type="Texture2D" uid="uid://bsctq8egy8r06" path="res://asset/image/level_list/segment/4.png" id="2_01htc"]
+[ext_resource type="Texture2D" uid="uid://ckci8owuo4dca" path="res://asset/image/level_list/segment/4.png" id="2_01htc"]
 
 [node name="LevelListSegment" instance=ExtResource("1_d0fra")]
-number = 4
 
 [node name="Background" parent="." index="0"]
 texture = ExtResource("2_01htc")

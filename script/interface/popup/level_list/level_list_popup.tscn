@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://pfwm4oy1uvhy"]
+[gd_scene load_steps=7 format=3 uid="uid://pfwm4oy1uvhy"]
 
 [ext_resource type="Script" path="res://script/interface/popup/level_list/level_list_popup.gd" id="1_i3437"]
-[ext_resource type="PackedScene" uid="uid://cxkymuanj584c" path="res://script/interface/common/component/container/drag_scroll/drag_scroll_container.tscn" id="2_452fy"]
-[ext_resource type="Script" path="res://script/interface/popup/level_list/level_list.gd" id="3_54ohh"]
-[ext_resource type="PackedScene" uid="uid://b0nr3hp5l3m0s" path="res://script/interface/popup/level_list/level_preview.tscn" id="4_kkny2"]
+[ext_resource type="PackedScene" uid="uid://cgfk56hbjap44" path="res://script/interface/common/component/container/lazy_scroll/lazy_scroll_container.tscn" id="5_dxi1y"]
+[ext_resource type="PackedScene" uid="uid://d2d0xxi2aqce2" path="res://asset/scenes/level_list/segment/1.tscn" id="6_3mh20"]
+[ext_resource type="PackedScene" uid="uid://tcr0800d70um" path="res://asset/scenes/level_list/segment/2.tscn" id="7_lrgyv"]
+[ext_resource type="PackedScene" uid="uid://dh4y4deavq5hc" path="res://asset/scenes/level_list/segment/3.tscn" id="8_7tx5y"]
+[ext_resource type="PackedScene" uid="uid://61ktt56hhksf" path="res://asset/scenes/level_list/segment/4.tscn" id="9_1442p"]
 
 [node name="LevelListPopup" type="Control"]
 layout_mode = 3
@@ -23,21 +25,6 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.490196, 0.490196, 0.490196, 1)
 
-[node name="DragScrollContainer" parent="." instance=ExtResource("2_452fy")]
+[node name="LazyScrollContainer" parent="." instance=ExtResource("5_dxi1y")]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="CenterContainer" type="CenterContainer" parent="DragScrollContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="LevelList" type="VBoxContainer" parent="DragScrollContainer/CenterContainer"]
-layout_mode = 2
-alignment = 1
-script = ExtResource("3_54ohh")
-level_preview_scene = ExtResource("4_kkny2")
+_packed_scenes = Array[PackedScene]([ExtResource("6_3mh20"), ExtResource("7_lrgyv"), ExtResource("8_7tx5y"), ExtResource("9_1442p")])
