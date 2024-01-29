@@ -126,20 +126,20 @@ func select(x: int, y: int) -> void:
 	
 	if _selected_platform == null:
 		_selected_platform = _map[x][y]
-		emit_signal("selected", x, y)
+		selected.emit(x, y)
 		return
 	
 	var selected_coordinates: Vector2i = _selected_platform.get_coordinates()
 	if not _try_move(selected_coordinates.x, selected_coordinates.y, x, y):
-		emit_signal("unselected", selected_coordinates.x, selected_coordinates.y)
+		unselected.emit(selected_coordinates.x, selected_coordinates.y)
 		_selected_platform = _map[x][y]
-		emit_signal("selected", x, y)
+		selected.emit(x, y)
 		return
 	
-	emit_signal("unselected", selected_coordinates.x, selected_coordinates.y)
+	unselected.emit(selected_coordinates.x, selected_coordinates.y)
 	_selected_platform = null
 	if is_finished():
-		emit_signal("finished", is_won(), get_stars())
+		finished.emit(is_won(), get_stars())
 
 
 func _try_move(x_from: int, y_from: int, x_to: int, y_to: int) -> bool:
@@ -160,13 +160,13 @@ func _try_move(x_from: int, y_from: int, x_to: int, y_to: int) -> bool:
 		platform_between.hit_jumper()
 	
 	_map[x_to][y_to].add_jumper(jumper)
-	emit_signal("jumper_moved", x_from, y_from, x_to, y_to)
+	jumper_moved.emit(x_from, y_from, x_to, y_to)
 	return true
 
 
 func _on_jumper_hitted(x: int, y: int, current_health: int) -> void:
-	emit_signal("jumper_hitted", x, y, current_health)
+	jumper_hitted.emit(x, y, current_health)
 
 
 func _on_jumper_dead(x: int, y: int) -> void:
-	emit_signal("jumper_dead", x, y)
+	jumper_dead.emit(x, y)

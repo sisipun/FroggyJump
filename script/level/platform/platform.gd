@@ -43,7 +43,7 @@ func init(
 
 func _input_event(_viewport: Viewport, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventScreenTouch and event.is_pressed():
-		emit_signal("clicked", coordinates.x, coordinates.y)
+		clicked.emit(coordinates.x, coordinates.y)
 
 
 func has_jumper() -> bool:

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://script/interface/popup/level_list/level_preview.gd" id="1_uj1hw"]
 
 [node name="LevelPreview" type="Panel"]
-custom_minimum_size = Vector2(500, 200)
+custom_minimum_size = Vector2(300, 150)
 offset_right = 500.0
 offset_bottom = 200.0
 script = ExtResource("1_uj1hw")

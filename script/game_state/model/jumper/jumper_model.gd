@@ -68,6 +68,6 @@ func move_to(coordinates: Vector2i) -> void:
 func hit() -> void:
 	_health -= 1
 	if _health > 0:
-		emit_signal("hitted", _health)
+		hitted.emit(_health)
 	else:
-		emit_signal("dead")
+		dead.emit()

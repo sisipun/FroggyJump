@@ -95,9 +95,9 @@ func clear_jumper() -> void:
 
 
 func _on_jumper_hitted(current_health: int) -> void:
-	emit_signal("jumper_hitted", current_health)
+	jumper_hitted.emit(current_health)
 
 
 func _on_jumper_dead() -> void:
-	emit_signal("jumper_dead")
+	jumper_dead.emit()
 	clear_jumper()

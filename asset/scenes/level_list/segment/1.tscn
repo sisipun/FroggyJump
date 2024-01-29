@@ -1,9 +1,55 @@
-[gd_scene load_steps=3 format=3 uid="uid://d2d0xxi2aqce2"]
+[gd_scene load_steps=4 format=3 uid="uid://d2d0xxi2aqce2"]
 
 [ext_resource type="PackedScene" uid="uid://fpa4qwwoxe08" path="res://script/interface/popup/level_list/level_list_segment.tscn" id="1_2vma8"]
 [ext_resource type="Texture2D" uid="uid://6iusmt3xuxod" path="res://asset/image/level_list/segment/1.png" id="2_wy2j6"]
+[ext_resource type="PackedScene" uid="uid://b0nr3hp5l3m0s" path="res://script/interface/popup/level_list/level_preview.tscn" id="3_kyai8"]
 
 [node name="LevelListSegment" instance=ExtResource("1_2vma8")]
 
 [node name="Background" parent="." index="0"]
 texture = ExtResource("2_wy2j6")
+
+[node name="1" parent="Previews" index="0" instance=ExtResource("3_kyai8")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -555.0
+offset_right = 150.0
+offset_bottom = -405.0
+grow_horizontal = 2
+grow_vertical = 2
+level_id = "1"
+
+[node name="2" parent="Previews" index="1" instance=ExtResource("3_kyai8")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -75.0
+offset_right = 150.0
+offset_bottom = 75.0
+grow_horizontal = 2
+grow_vertical = 2
+level_id = "2"
+
+[node name="3" parent="Previews" index="2" instance=ExtResource("3_kyai8")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = 405.0
+offset_right = 150.0
+offset_bottom = 555.0
+grow_horizontal = 2
+grow_vertical = 2
+level_id = "1"

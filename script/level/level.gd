@@ -68,7 +68,7 @@ func start(level_id: String) -> void:
 			
 			_platform_map[x].append(platform)
 	
-	Events.emit_signal("level_started", level_id)
+	Events.level_started.emit(level_id)
 
 
 func restart(level_id: String) -> void:
@@ -130,7 +130,7 @@ func _on_level_finished(won: bool, stars: int, level_id: String) -> void:
 		restart(level_id)
 		return
 	
-	Events.emit_signal("level_completed", level_id, stars)
+	Events.level_completed.emit(level_id, stars)
 
 
 func _create_level_model(level_id: String) -> LevelModel:

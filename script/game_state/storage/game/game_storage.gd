@@ -14,7 +14,7 @@ func _ready() -> void:
 	Events.level_started.connect(_on_level_started)
 	
 	if not FileAccess.file_exists(_save_path + _save_file):
-		Events.emit_signal("game_updated", game)
+		Events.game_updated.emit(game)
 		return
 	
 	var file: FileAccess = FileAccess.open(_save_path + _save_file, FileAccess.READ)
@@ -25,13 +25,13 @@ func _ready() -> void:
 	if version == _current_version:
 		game = GameDataParser.read(data)
 	
-	Events.emit_signal("game_updated", game)
+	Events.game_updated.emit(game)
 
 
 func _on_level_started(level_id: String) -> void:
 	game.current_level_id = level_id
 	save()
-	Events.emit_signal("game_updated", game)
+	Events.game_updated.emit(game)
 
 
 func _on_level_completed(level_id: String, stars: int) -> void:
@@ -39,12 +39,12 @@ func _on_level_completed(level_id: String, stars: int) -> void:
 	if levels.size() == 0:
 		game.levels.push_back(LevelData.new(level_id, stars))
 		save()
-		Events.emit_signal("game_level_completed", level_id, stars)
+		Events.game_level_completed.emit(level_id, stars)
 	else:
 		var level: LevelData = levels[0]
 		level.stars = max(level.stars, stars)
 		save()
-		Events.emit_signal("game_level_completed", level.id, level.stars)
+		Events.game_level_completed.emit(level.id, level.stars)
 
 
 func save() -> void:

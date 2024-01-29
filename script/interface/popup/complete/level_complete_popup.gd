@@ -15,8 +15,8 @@ func _ready() -> void:
 
 
 func _on_next_button_pressed() -> void:
-	Events.emit_signal("level_start_request", Levels.get_next_level_id(Levels.get_current_level_id()))
+	Events.level_start_request.emit(Levels.get_next_level_id(Levels.get_current_level_id()))
 
 
 func _on_home_buttom_pressed() -> void:
-	Events.emit_signal("home_return_request")
+	Events.home_return_request.emit()
