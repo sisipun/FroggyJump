@@ -12,6 +12,7 @@ extends DragScrollContainer
 var _loaded_scenes: Dictionary
 var _current_scene_index: int:
 	set(value):
+		print(value)
 		var previous_scene_index = _current_scene_index
 		_current_scene_index = value
 		_lazy_load_scenes(previous_scene_index, _current_scene_index, _lazy_step)
@@ -25,26 +26,30 @@ func _ready() -> void:
 
 
 func _on_vertical_scroll(old_value: int, new_value: int) -> void:
-	while _change_current_scene(old_value, new_value):
-		pass
+	var scroll_direction: int = new_value - old_value
+	var next_scene_index: int = _current_scene_index
+	while _next_scene_appeared(next_scene_index, scroll_direction):
+		next_scene_index += 1 if scroll_direction > 0 else -1
+	_current_scene_index = next_scene_index
 
 
-func _change_current_scene(old_scroll_value: int, new_scroll_value: int) -> bool:
-	var scroll_direction: int = new_scroll_value - old_scroll_value
-	var current_scene: Control = _loaded_scenes[_current_scene_index]
+func _is_scene_available(_index: int) -> bool:
+	return true
+
+
+func _next_scene_appeared(current_scene_index: int, direction: int) -> bool:
+	var current_scene: Control = _loaded_scenes[current_scene_index]
 	if (
-		scroll_direction > 0
+		direction > 0
 		and current_scene.position.y + current_scene.size.y < scroll_vertical + size.y 
 		and _current_scene_index + 1 < _packed_scenes.size()
 	):
-		_current_scene_index += 1
 		return true
 	elif (
-		scroll_direction < 0
+		direction < 0
 		and current_scene.position.y >= scroll_vertical + size.y
 		and _current_scene_index > 0
 	):
-		_current_scene_index -= 1
 		return true
 	
 	return false
