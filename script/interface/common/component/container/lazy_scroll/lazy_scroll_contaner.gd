@@ -27,14 +27,16 @@ func _ready() -> void:
 
 func _on_vertical_scroll(old_value: int, new_value: int) -> void:
 	var scroll_direction: int = new_value - old_value
-	var next_scene_index: int = _current_scene_index
-	while _next_scene_appeared(next_scene_index, scroll_direction):
-		next_scene_index += 1 if scroll_direction > 0 else -1
-	_current_scene_index = next_scene_index
+	while _next_scene_appeared(_current_scene_index, scroll_direction):
+		var next_scene_index = _current_scene_index + (1 if scroll_direction > 0 else -1)
+		if _is_scene_available(next_scene_index):
+			_current_scene_index = next_scene_index
+		else:
+			scroll_vertical = old_value
 
 
 func _is_scene_available(_index: int) -> bool:
-	return true
+	return _index < 2
 
 
 func _next_scene_appeared(current_scene_index: int, direction: int) -> bool:
