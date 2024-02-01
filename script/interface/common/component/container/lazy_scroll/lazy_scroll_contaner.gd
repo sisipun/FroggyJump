@@ -12,7 +12,6 @@ extends DragScrollContainer
 var _loaded_scenes: Dictionary
 var _current_scene_index: int:
 	set(value):
-		print(value)
 		var previous_scene_index = _current_scene_index
 		_current_scene_index = value
 		_lazy_load_scenes(previous_scene_index, _current_scene_index, _lazy_step)
@@ -36,7 +35,7 @@ func _on_vertical_scroll(old_value: int, new_value: int) -> void:
 
 
 func _is_scene_available(_index: int) -> bool:
-	return _index < 2
+	return true
 
 
 func _next_scene_appeared(current_scene_index: int, direction: int) -> bool:
