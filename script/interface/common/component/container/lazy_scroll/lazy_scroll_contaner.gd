@@ -35,7 +35,7 @@ func _on_vertical_scroll(old_value: int, new_value: int) -> void:
 
 
 func _is_scene_available(_index: int) -> bool:
-	return true
+	return _loaded_scenes[_index].is_available()
 
 
 func _next_scene_appeared(current_scene_index: int, direction: int) -> bool:

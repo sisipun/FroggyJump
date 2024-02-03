@@ -14,24 +14,24 @@ var stars: int:
 	set(value):
 		stars = value
 		_stars_label.text = str(stars)
-var enabled: bool
+var available: bool
 
 
 func _ready() -> void:
 	_name_label.text = level_id
 	stars = Levels.get_stars(level_id)
-	enabled = Levels.is_enabled(level_id)
+	available = Levels.is_available(level_id)
 	
 	Events.game_level_completed.connect(_on_game_level_completed)
 
 
 func _gui_input(event: InputEvent) -> void:
-	if enabled and event is InputEventScreenTouch and !event.is_pressed():
+	if available and event is InputEventScreenTouch and !event.is_pressed():
 		Events.level_start_request.emit(level_id)
 
 
 func _on_game_level_completed(_level_id: String, _stars: int) -> void:
 	if level_id == _level_id:
 		stars = Levels.get_stars(_level_id)
-	if not enabled:
-		enabled = Levels.is_enabled(level_id)
+	if not available:
+		available = Levels.is_available(level_id)

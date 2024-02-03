@@ -13,6 +13,7 @@ grow_vertical = 2
 scale = Vector2(0.992495, 1)
 mouse_filter = 1
 script = ExtResource("1_616gm")
+_previews_node_path = NodePath("Previews")
 
 [node name="Background" type="NinePatchRect" parent="."]
 layout_mode = 1

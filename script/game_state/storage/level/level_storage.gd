@@ -66,7 +66,7 @@ func get_stars(id: String) -> int:
 	return _id_to_stats[id].stars
 
 
-func is_enabled(id: String) -> bool:
+func is_available(id: String) -> bool:
 	var resource: LevelResource = _id_to_resource[id]
 	return resource.required_levels.all(func(it): return _id_to_stats[it].completed)
 
