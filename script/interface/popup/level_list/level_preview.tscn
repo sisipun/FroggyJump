@@ -4,8 +4,8 @@
 
 [node name="LevelPreview" type="Panel"]
 custom_minimum_size = Vector2(300, 150)
-offset_right = 500.0
-offset_bottom = 200.0
+offset_right = 300.0
+offset_bottom = 150.0
 script = ExtResource("1_uj1hw")
 _name_label_path = NodePath("HBoxContainer/Name")
 _stars_label_path = NodePath("HBoxContainer/Stars")

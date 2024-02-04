@@ -1,0 +1,52 @@
+[gd_resource type="Resource" script_class="LevelResource" load_steps=10 format=3 uid="uid://ckagggk8ermpu"]
+
+[ext_resource type="Script" path="res://script/game_state/resource/level/level_cell_custom_resource.gd" id="1_hl807"]
+[ext_resource type="Script" path="res://script/game_state/resource/level/level_cell_resource.gd" id="2_kfrg3"]
+[ext_resource type="Script" path="res://script/game_state/resource/level/level_resource.gd" id="3_d3a8e"]
+
+[sub_resource type="Resource" id="Resource_n1xiu"]
+script = ExtResource("1_hl807")
+coordinates = Vector2i(0, 0)
+platfrom = 1
+jumper = 1
+
+[sub_resource type="Resource" id="Resource_h7e67"]
+script = ExtResource("1_hl807")
+coordinates = Vector2i(1, 0)
+platfrom = 1
+jumper = 1
+
+[sub_resource type="Resource" id="Resource_vnyrg"]
+script = ExtResource("1_hl807")
+coordinates = Vector2i(2, 1)
+platfrom = 1
+jumper = 1
+
+[sub_resource type="Resource" id="Resource_wv4lv"]
+script = ExtResource("1_hl807")
+coordinates = Vector2i(1, 2)
+platfrom = 1
+jumper = 1
+
+[sub_resource type="Resource" id="Resource_xw70s"]
+script = ExtResource("1_hl807")
+coordinates = Vector2i(0, 1)
+platfrom = 1
+jumper = 1
+
+[sub_resource type="Resource" id="Resource_qkl4j"]
+script = ExtResource("2_kfrg3")
+platfrom = 1
+jumper = 0
+
+[resource]
+script = ExtResource("3_d3a8e")
+id = "4"
+width = 3
+height = 3
+win_condition = 3
+_two_star_condition = 2
+_three_star_condition = 1
+default_cell = SubResource("Resource_qkl4j")
+custom_cells = Array[ExtResource("1_hl807")]([SubResource("Resource_n1xiu"), SubResource("Resource_h7e67"), SubResource("Resource_vnyrg"), SubResource("Resource_wv4lv"), SubResource("Resource_xw70s")])
+required_levels = Array[String](["3"])

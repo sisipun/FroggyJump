@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="LevelResource" load_steps=8 format=3 uid="uid://c88oanokka0c8"]
+
+[ext_resource type="Script" path="res://script/game_state/resource/level/level_cell_custom_resource.gd" id="1_lsvxl"]
+[ext_resource type="Script" path="res://script/game_state/resource/level/level_cell_resource.gd" id="2_0yhlb"]
+[ext_resource type="Script" path="res://script/game_state/resource/level/level_resource.gd" id="3_06a4b"]
+
+[sub_resource type="Resource" id="Resource_n1xiu"]
+script = ExtResource("1_lsvxl")
+coordinates = Vector2i(0, 0)
+platfrom = 1
+jumper = 1
+
+[sub_resource type="Resource" id="Resource_h7e67"]
+script = ExtResource("1_lsvxl")
+coordinates = Vector2i(0, 1)
+platfrom = 1
+jumper = 1
+
+[sub_resource type="Resource" id="Resource_vnyrg"]
+script = ExtResource("1_lsvxl")
+coordinates = Vector2i(1, 2)
+platfrom = 1
+jumper = 1
+
+[sub_resource type="Resource" id="Resource_qkl4j"]
+script = ExtResource("2_0yhlb")
+platfrom = 1
+jumper = 0
+
+[resource]
+script = ExtResource("3_06a4b")
+id = "2"
+width = 3
+height = 3
+win_condition = 3
+_two_star_condition = 2
+_three_star_condition = 1
+default_cell = SubResource("Resource_qkl4j")
+custom_cells = Array[ExtResource("1_lsvxl")]([SubResource("Resource_n1xiu"), SubResource("Resource_h7e67"), SubResource("Resource_vnyrg")])
+required_levels = Array[String](["1"])
