@@ -1,33 +1,50 @@
-[gd_scene load_steps=2 format=3 uid="uid://b0nr3hp5l3m0s"]
+[gd_scene load_steps=5 format=3 uid="uid://b0nr3hp5l3m0s"]
 
+[ext_resource type="Texture2D" uid="uid://cvkb2ovna2fty" path="res://asset/image/level_list/preview/background.png" id="1_knvtu"]
 [ext_resource type="Script" path="res://script/interface/popup/level_list/level_preview.gd" id="1_uj1hw"]
+[ext_resource type="Texture2D" uid="uid://d38d014uff626" path="res://asset/image/level_list/preview/background_unavailable.png" id="3_7x7s0"]
+[ext_resource type="PackedScene" uid="uid://c5ad5ryo32beu" path="res://script/interface/popup/level_list/level_stars.tscn" id="3_qvqj5"]
 
-[node name="LevelPreview" type="Panel"]
-custom_minimum_size = Vector2(300, 150)
-offset_right = 300.0
-offset_bottom = 150.0
+[node name="LevelPreview" type="NinePatchRect"]
+custom_minimum_size = Vector2(250, 250)
+offset_right = 250.0
+offset_bottom = 250.0
+mouse_filter = 1
+texture = ExtResource("1_knvtu")
 script = ExtResource("1_uj1hw")
-_name_label_path = NodePath("HBoxContainer/Name")
-_stars_label_path = NodePath("HBoxContainer/Stars")
+_name_label_path = NodePath("Name")
+_level_stars_path = NodePath("Stars")
+background_available = ExtResource("1_knvtu")
+background_unavailable = ExtResource("3_7x7s0")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="Name" type="Label" parent="."]
+custom_minimum_size = Vector2(100, 100)
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.0
+offset_top = -100.0
+offset_right = 75.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="Name" type="Label" parent="HBoxContainer"]
-layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Stars" type="Label" parent="HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="Stars" parent="." instance=ExtResource("3_qvqj5")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -90.0
+offset_top = 10.0
+offset_right = 90.0
+offset_bottom = 70.0
+grow_horizontal = 2
+grow_vertical = 2

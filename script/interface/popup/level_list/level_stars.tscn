@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5ad5ryo32beu"]
+
+[ext_resource type="Script" path="res://script/interface/popup/level_list/level_stars.gd" id="1_2xeq5"]
+[ext_resource type="Texture2D" uid="uid://bqetui5eall1m" path="res://asset/image/level_list/preview/star.png" id="1_je4ja"]
+
+[node name="Stars" type="HBoxContainer"]
+custom_minimum_size = Vector2(180, 60)
+offset_right = 180.0
+offset_bottom = 60.0
+alignment = 1
+script = ExtResource("1_2xeq5")
+_star_1_path = NodePath("Star1")
+_star_2_path = NodePath("Star2")
+_star_3_path = NodePath("Star3")
+
+[node name="Star1" type="NinePatchRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("1_je4ja")
+
+[node name="Star2" type="NinePatchRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("1_je4ja")
+
+[node name="Star3" type="NinePatchRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("1_je4ja")
