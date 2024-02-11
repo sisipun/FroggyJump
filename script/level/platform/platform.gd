@@ -14,15 +14,7 @@ signal clicked(x, y)
 @onready var _effect: AnimatedSprite2D = get_node(_effect_path)
 
 var coordinates: Vector2i
-
-var jumper: Jumper = null :
-	set(_jumper):
-		if _jumper == null:
-			jumper = null
-			return
-		
-		jumper = _jumper
-		jumper.position = position
+var jumper: Jumper
 
 
 func init(
@@ -38,6 +30,7 @@ func init(
 		_size.y / _shape.shape.get_rect().size.y
 	)
 	_body.sprite_frames = _sprite_frames
+	jumper = null
 	return self
 
 
@@ -48,6 +41,11 @@ func _input_event(_viewport: Viewport, event: InputEvent, _shape_idx: int) -> vo
 
 func has_jumper() -> bool:
 	return jumper != null
+
+
+func add_jumper(_jumper: Jumper, initial: bool) -> void:
+	jumper = _jumper
+	jumper.move_to(position, initial)
 
 
 func show_as_default() -> void:

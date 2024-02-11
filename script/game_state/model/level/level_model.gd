@@ -10,6 +10,7 @@ signal jumper_dead(x, y)
 signal finished(won, stars)
 
 
+var _id: String
 var _width: int
 var _height: int
 var _win_condition: int
@@ -21,6 +22,7 @@ var _selected_platform: PlatformModel
 
 
 func _init(
+	id: String,
 	width: int, 
 	height: int, 
 	win_condition: int,
@@ -29,6 +31,7 @@ func _init(
 	default_cell: LevelCellResource, 
 	custom_cells: Array[LevelCellCustomResource]
 ) -> void:
+	_id = id
 	_width = width
 	_height = height
 	_win_condition = win_condition
@@ -50,6 +53,10 @@ func _init(
 				platform_model.jumper_hitted.connect(Callable(self, "_on_jumper_hitted").bind(x, y))
 				platform_model.jumper_dead.connect(Callable(self, "_on_jumper_dead").bind(x, y))
 			_map[x].append(platform_model)
+
+
+func get_id() -> String:
+	return _id
 
 
 func is_finished() -> bool:

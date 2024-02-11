@@ -64,7 +64,7 @@ func start(level_id: String) -> void:
 			
 			if platform_model.has_jumper():
 				var jumper_model: JumperModel = platform_model.get_jumper()
-				platform.jumper = _create_jumper(jumper_size, jumper_model)
+				platform.add_jumper(_create_jumper(jumper_size, jumper_model), true)
 			
 			_platform_map[x].append(platform)
 	
@@ -112,7 +112,12 @@ func _on_jumper_moved(x_from: int, y_from: int, x_to: int, y_to: int) -> void:
 	var platform_to: Platform = _platform_map[x_to][y_to]
 	var jumper: Jumper = platform_from.jumper
 	platform_from.remove_jumper()
-	platform_to.jumper = jumper
+	platform_to.add_jumper(jumper, false)
+
+
+func _on_jumper_movement_finished() -> void:
+	if _level_model.is_finished():
+		_on_level_finished(_level_model.is_won(), _level_model.get_stars(), _level_model.get_id())
 
 
 func _on_jumper_hitted(current_health: int, x: int, y: int) -> void:
@@ -140,7 +145,6 @@ func _create_level_model(level_id: String) -> LevelModel:
 	level_model.jumper_moved.connect(_on_jumper_moved)
 	level_model.jumper_hitted.connect(_on_jumper_hitted)
 	level_model.jumper_dead.connect(_on_jumper_dead)
-	level_model.finished.connect(Callable(_on_level_finished).bind(level_id))
 	return level_model
 
 
@@ -153,7 +157,6 @@ func _remove_level_model() -> void:
 	_level_model.jumper_moved.disconnect(_on_jumper_moved)
 	_level_model.jumper_hitted.disconnect(_on_jumper_hitted)
 	_level_model.jumper_dead.disconnect(_on_jumper_dead)
-	_level_model.finished.disconnect(_on_level_finished)
 	_level_model = null
 
 
@@ -191,6 +194,7 @@ func _create_jumper(size: Vector2, jumper_model: JumperModel) -> Jumper:
 		jumper_model.get_health(), 
 		jumper_resource.sprite_frames
 	)
+	jumper.movement_finished.connect(_on_jumper_movement_finished)
 	return jumper
 
 
@@ -201,4 +205,5 @@ func _remove_jumper(x: int, y: int) -> void:
 	
 	var jumper: Jumper = platform.jumper
 	platform.remove_jumper()
+	jumper.movement_finished.disconnect(_on_jumper_movement_finished)
 	jumper.queue_free()
