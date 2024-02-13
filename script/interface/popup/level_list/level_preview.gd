@@ -2,6 +2,8 @@ class_name LevelPreview
 extends NinePatchRect
 
 
+const DRAG_TRESHOLD: int = 50
+
 @export_node_path("Label") var _name_label_path: NodePath
 @export_node_path("LevelStars") var _level_stars_path: NodePath
 
@@ -16,7 +18,7 @@ var available: bool:
 	set(value):
 		available = value
 		texture = background_available if available else background_unavailable
-var clicked: bool
+var drag: int
 
 
 func _ready() -> void:
@@ -33,13 +35,14 @@ func _gui_input(event: InputEvent) -> void:
 	
 	if event is InputEventScreenTouch:
 		if event.is_pressed():
-			clicked = true
-		elif clicked:
-			clicked = false
+			drag = 0
+		elif abs(drag) < DRAG_TRESHOLD:
+			drag = 0
 			Events.level_start_request.emit(level_id)
+		
 	
 	if event is InputEventScreenDrag:
-		clicked = false
+		drag += event.relative.y
 
 
 func _on_game_level_completed(_level_id: String, _stars_count: int) -> void:
