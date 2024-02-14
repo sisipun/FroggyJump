@@ -31,7 +31,7 @@ func _on_vertical_scroll(old_value: int, new_value: int) -> void:
 		if _is_scene_available(next_scene_index):
 			_current_scene_index = next_scene_index
 		else:
-			scroll_vertical = old_value
+			set_scroll_vertical(old_value)
 
 
 func _is_scene_available(_index: int) -> bool:
@@ -68,7 +68,7 @@ func _lazy_load_scenes(previous_index: int, current_index: int, step: int) -> vo
 		var scene: Control = _load_scene(i)
 		if scene and drection < 0:
 			_scenes.move_child(scene, 0)
-			scroll_vertical += int(scene.custom_minimum_size.y)
+			scroll_vertical +=int(scene.custom_minimum_size.y)
 	
 	for i in free_ragne:
 		var scene: Control = _free_scene(i)
