@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dnxvurhl2cset"]
+[gd_scene load_steps=6 format=3 uid="uid://dnxvurhl2cset"]
 
 [ext_resource type="Script" path="res://script/level/jumper/jumper.gd" id="1_h0n3a"]
+[ext_resource type="Texture2D" uid="uid://cy8f7vn3hgvms" path="res://asset/image/level/jumper/jumper_big.svg" id="2_icpam"]
 [ext_resource type="Texture2D" uid="uid://c5y1xv7ytii5n" path="res://asset/image/level/jumper/jumper.svg" id="2_u0ibu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o4ms2"]
@@ -8,6 +9,14 @@ radius = 32.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_htx5m"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_icpam")
+}],
+"loop": false,
+"name": &"dead",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_u0ibu")
@@ -28,3 +37,4 @@ shape = SubResource("CircleShape2D_o4ms2")
 [node name="Body" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_htx5m")
+animation = &"dead"

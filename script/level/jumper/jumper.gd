@@ -56,3 +56,9 @@ func move_to(new_position: Vector2, initial: bool) -> void:
 	move_to_position = new_position
 	if move_to_position != position:
 		set_physics_process(true)
+
+
+func kill() -> void:
+	_body.play("dead")
+	await _body.animation_finished
+	queue_free()

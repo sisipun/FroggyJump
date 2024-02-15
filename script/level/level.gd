@@ -127,7 +127,7 @@ func _on_jumper_hitted(current_health: int, x: int, y: int) -> void:
 
 
 func _on_jumper_dead(x: int, y: int) -> void:
-	_remove_jumper(x, y)
+	_kill_jumper(x, y)
 
 
 func _on_level_finished(won: bool, stars: int, level_id: String) -> void:
@@ -136,6 +136,17 @@ func _on_level_finished(won: bool, stars: int, level_id: String) -> void:
 		return
 	
 	Events.level_completed.emit(level_id, stars)
+
+
+func _kill_jumper(x: int, y: int) -> void:
+	var platform: Platform = _platform_map[x][y]
+	if not platform.has_jumper():
+		return
+	
+	var jumper: Jumper = platform.jumper
+	platform.remove_jumper()
+	jumper.movement_finished.disconnect(_on_jumper_movement_finished)
+	jumper.kill()
 
 
 func _create_level_model(level_id: String) -> LevelModel:

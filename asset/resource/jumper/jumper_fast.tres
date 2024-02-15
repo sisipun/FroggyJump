@@ -1,10 +1,26 @@
-[gd_resource type="Resource" script_class="JumperResource" load_steps=4 format=3 uid="uid://r5x0ad03r553"]
+[gd_resource type="Resource" script_class="JumperResource" load_steps=6 format=3 uid="uid://r5x0ad03r553"]
 
 [ext_resource type="Script" path="res://script/game_state/resource/jumper/jumper_resource.gd" id="1_3m3ec"]
 [ext_resource type="Texture2D" uid="uid://bpk1eqwr1yvre" path="res://asset/image/level/jumper/jumper_fast.svg" id="1_51a11"]
+[ext_resource type="Texture2D" uid="uid://c5y1xv7ytii5n" path="res://asset/image/level/jumper/jumper.svg" id="2_qbkow"]
+[ext_resource type="Texture2D" uid="uid://cy8f7vn3hgvms" path="res://asset/image/level/jumper/jumper_big.svg" id="3_mxl22"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_i626s"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_qbkow")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_mxl22")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_51a11")
+}],
+"loop": false,
+"name": &"dead",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("1_51a11")
