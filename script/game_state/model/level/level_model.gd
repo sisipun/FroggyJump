@@ -85,6 +85,16 @@ func get_stars() -> int:
 		return 1
 
 
+func get_next_goal() -> int:
+	var stars: int = get_stars()
+	if stars == 0:
+		return _win_condition
+	elif stars == 1:
+		return _two_star_condition
+	else:
+		return _three_star_condition
+
+
 func get_width() -> int:
 	return _width
 

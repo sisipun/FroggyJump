@@ -10,6 +10,8 @@ signal game_level_completed(level_id, stars)
 # LEVEL
 signal level_start_request(level_id)
 
+signal level_goal_changed(jumpers_count, jumpers_goal, stars_count)
+
 signal level_started(level_id)
 signal level_completed(level_id, stars)
 

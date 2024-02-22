@@ -69,6 +69,11 @@ func start(level_id: String) -> void:
 			_platform_map[x].append(platform)
 	
 	Events.level_started.emit(level_id)
+	Events.level_goal_changed.emit(
+		_level_model.get_jumpers_count(), 
+		_level_model.get_next_goal(), 
+		_level_model.get_stars()
+	)
 
 
 func restart(level_id: String) -> void:
@@ -128,6 +133,11 @@ func _on_jumper_hitted(current_health: int, x: int, y: int) -> void:
 
 func _on_jumper_dead(x: int, y: int) -> void:
 	_kill_jumper(x, y)
+	Events.level_goal_changed.emit(
+		_level_model.get_jumpers_count(), 
+		_level_model.get_next_goal(), 
+		_level_model.get_stars()
+	)
 
 
 func _on_level_finished(won: bool, stars: int, level_id: String) -> void:
