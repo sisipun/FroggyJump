@@ -18,3 +18,11 @@ signal level_completed(level_id, stars)
 
 # HOME
 signal home_return_request
+signal home_returned
+
+
+# SETTINGS
+
+# SOUND
+signal sound_switch_request
+signal music_switch_request

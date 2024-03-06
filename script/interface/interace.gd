@@ -36,3 +36,4 @@ func _on_level_completed(_level_id: String, _stars: int) -> void:
 func _on_home_return_request() -> void:
 	_level_complete_popup.hide()
 	_level_list_popup.show()
+	Events.home_returned.emit()

@@ -24,6 +24,7 @@ Jumpers="*res://script/game_state/storage/jumper/jumper_storage.tscn"
 Platforms="*res://script/game_state/storage/platform/platform_storage.tscn"
 Levels="*res://script/game_state/storage/level/level_storage.tscn"
 Games="res://script/game_state/storage/game/game_storage.tscn"
+AudioController="res://script/game_state/controller/audio_controller.tscn"
 
 [display]
 
