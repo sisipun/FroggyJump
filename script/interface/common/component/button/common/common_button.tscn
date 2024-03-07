@@ -1,0 +1,60 @@
+[gd_scene load_steps=6 format=3 uid="uid://exycl2y0itl1"]
+
+[ext_resource type="Script" path="res://script/interface/common/component/button/common/common_button.gd" id="1_tvblb"]
+[ext_resource type="AudioStream" uid="uid://cg5m7yok6afo1" path="res://asset/audio/sound/button_sound.ogg" id="2_ndu1x"]
+
+[sub_resource type="Animation" id="Animation_45nqc"]
+resource_name = "down"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 1.2)]
+}
+
+[sub_resource type="Animation" id="Animation_bbgeg"]
+resource_name = "up"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1.2, 1.2), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_grst5"]
+_data = {
+"down": SubResource("Animation_45nqc"),
+"up": SubResource("Animation_bbgeg")
+}
+
+[node name="CommonButton" type="TextureButton"]
+custom_minimum_size = Vector2(60, 60)
+pivot_offset = Vector2(30, 30)
+ignore_texture_size = true
+stretch_mode = 4
+script = ExtResource("1_tvblb")
+_animation_player_path = NodePath("AnimationPlayer")
+_audio_stream_player_path = NodePath("AudioStreamPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_grst5")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_ndu1x")
+bus = &"Sound"

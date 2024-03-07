@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://brhyybq2qgn8o"]
+
+[ext_resource type="PackedScene" uid="uid://exycl2y0itl1" path="res://script/interface/common/component/button/common/common_button.tscn" id="1_iqq4l"]
+[ext_resource type="Script" path="res://script/interface/common/component/button/switch/switch_button.gd" id="2_avq5n"]
+
+[node name="SwitchButton" instance=ExtResource("1_iqq4l")]
+script = ExtResource("2_avq5n")
+true_normal = null
+false_normal = null
+state = true

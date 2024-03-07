@@ -1,5 +1,5 @@
 class_name BackgroundMusicPlayer
-extends AudioStreamPlayer2D
+extends AudioStreamPlayer
 
 
 @export var menu: AudioStream

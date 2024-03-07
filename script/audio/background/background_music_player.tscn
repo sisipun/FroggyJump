@@ -1,11 +1,11 @@
 [gd_scene load_steps=4 format=3 uid="uid://bkrysdb51e63j"]
 
-[ext_resource type="AudioStream" uid="uid://bd1coce0a4ngv" path="res://asset/sound/background_level_music.mp3" id="1_onc5a"]
-[ext_resource type="AudioStream" uid="uid://d1outuwacq7rg" path="res://asset/sound/background_menu_music.ogg" id="2_tdbpb"]
+[ext_resource type="AudioStream" uid="uid://d1outuwacq7rg" path="res://asset/audio/musc/background_menu_music.ogg" id="2_24u2t"]
 [ext_resource type="Script" path="res://script/audio/background/background_music_player.gd" id="2_vytnh"]
+[ext_resource type="AudioStream" uid="uid://bd1coce0a4ngv" path="res://asset/audio/musc/background_level_music.mp3" id="3_w6ewn"]
 
-[node name="BackgroundMusicPlayer" type="AudioStreamPlayer2D"]
+[node name="BackgroundMusicPlayer" type="AudioStreamPlayer"]
 bus = &"Music"
 script = ExtResource("2_vytnh")
-menu = ExtResource("2_tdbpb")
-level = ExtResource("1_onc5a")
+menu = ExtResource("2_24u2t")
+level = ExtResource("3_w6ewn")
