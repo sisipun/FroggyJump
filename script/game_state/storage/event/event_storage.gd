@@ -4,7 +4,6 @@ extends Node
 
 # GAME
 signal game_updated(game)
-signal game_level_completed(level_id, stars)
 
 
 # LEVEL
@@ -25,4 +24,6 @@ signal home_returned
 
 # SOUND
 signal sound_switch_request
+signal sound_switched(value)
 signal music_switch_request
+signal music_switched(value)

@@ -8,7 +8,9 @@ static func write(game: GameData) -> Dictionary:
 		levels.push_back(LevelDataParser.write(level))
 	return {
 		"levels": levels,
-		"current_level_id": game.current_level_id
+		"current_level_id": game.current_level_id,
+		"sound": game.sound,
+		"music": game.music
 	}
 
 
@@ -18,5 +20,7 @@ static func read(dict: Dictionary) -> GameData:
 		levels.push_back(LevelDataParser.read(level))
 	return GameData.new(
 		levels,
-		dict["current_level_id"]
+		dict["current_level_id"],
+		dict["sound"],
+		dict["music"]
 	)

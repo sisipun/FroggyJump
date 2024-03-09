@@ -26,7 +26,7 @@ func _ready() -> void:
 	_stars.value = Levels.get_stars(level_id)
 	available = Levels.is_available(level_id)
 	
-	Events.game_level_completed.connect(_on_game_level_completed)
+	Events.level_completed.connect(_on_level_completed)
 
 
 func _gui_input(event: InputEvent) -> void:
@@ -45,7 +45,7 @@ func _gui_input(event: InputEvent) -> void:
 		drag += event.relative.y
 
 
-func _on_game_level_completed(_level_id: String, _stars_count: int) -> void:
+func _on_level_completed(_level_id: String, _stars_count: int) -> void:
 	if level_id == _level_id:
 		_stars.value = _stars_count
 	if not available:

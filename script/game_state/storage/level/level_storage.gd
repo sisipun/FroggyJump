@@ -21,7 +21,7 @@ var _id_to_stats: Dictionary = {}
 
 func _ready() -> void:
 	Events.game_updated.connect(_on_game_updated)
-	Events.game_level_completed.connect(_on_game_level_completed)
+	Events.level_completed.connect(_on_level_completed)
 	for level in _levels:
 		_level_ids.append(level.id)
 		_id_to_resource[level.id] = level
@@ -79,7 +79,7 @@ func _on_game_updated(game: GameData) -> void:
 		_current_level_id = game.current_level_id
 
 
-func _on_game_level_completed(level_id: String, stars: int) -> void:
+func _on_level_completed(level_id: String, stars: int) -> void:
 	_update_level_stats(level_id, stars, true)
 
 

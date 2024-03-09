@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://kq6dr45i6ybv"]
+
+[ext_resource type="Script" path="res://script/game_state/storage/audio/audio_storage.gd" id="1_yv7mc"]
+
+[node name="AudioStorage" type="Node"]
+script = ExtResource("1_yv7mc")
