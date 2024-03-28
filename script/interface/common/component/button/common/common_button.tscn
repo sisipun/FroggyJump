@@ -42,10 +42,11 @@ _data = {
 }
 
 [node name="CommonButton" type="TextureButton"]
-custom_minimum_size = Vector2(60, 60)
+offset_right = 60.0
+offset_bottom = 60.0
 pivot_offset = Vector2(30, 30)
 ignore_texture_size = true
-stretch_mode = 4
+stretch_mode = 5
 script = ExtResource("1_tvblb")
 _animation_player_path = NodePath("AnimationPlayer")
 _audio_stream_player_path = NodePath("AudioStreamPlayer")

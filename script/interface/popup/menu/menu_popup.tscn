@@ -1,0 +1,82 @@
+[gd_scene load_steps=7 format=3 uid="uid://7deogi8ayk5a"]
+
+[ext_resource type="PackedScene" uid="uid://dq3p2kpr35bbc" path="res://script/interface/popup/menu/sound_button.tscn" id="1_h06lu"]
+[ext_resource type="Script" path="res://script/interface/popup/menu/menu_popup.gd" id="1_i3bh3"]
+[ext_resource type="PackedScene" uid="uid://bwuqqa8vwdevf" path="res://script/interface/popup/menu/music_button.tscn" id="2_uvknp"]
+[ext_resource type="PackedScene" uid="uid://36wbj3h8rtf4" path="res://script/interface/button/home_button.tscn" id="3_48gkf"]
+[ext_resource type="PackedScene" uid="uid://exycl2y0itl1" path="res://script/interface/common/component/button/common/common_button.tscn" id="4_q8ono"]
+[ext_resource type="Texture2D" uid="uid://b31pmxrjtesbq" path="res://asset/image/level/platform/effect/platform_effect_current.svg" id="5_j1sxm"]
+
+[node name="MenuPopup" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_i3bh3")
+_background_path = NodePath("Background")
+_home_button_path = NodePath("Panel/Buttons/HomeButton")
+_close_button_path = NodePath("Panel/CloseButton")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.25098)
+
+[node name="Panel" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(500, 300)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Buttons" type="HBoxContainer" parent="Panel"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 450.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="SoundButton" parent="Panel/Buttons" instance=ExtResource("1_h06lu")]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MusicButton" parent="Panel/Buttons" instance=ExtResource("2_uvknp")]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HomeButton" parent="Panel/Buttons" instance=ExtResource("3_48gkf")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CloseButton" parent="Panel" instance=ExtResource("4_q8ono")]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -30.0
+offset_top = -30.0
+offset_right = 30.0
+offset_bottom = 30.0
+grow_horizontal = 0
+texture_normal = ExtResource("5_j1sxm")

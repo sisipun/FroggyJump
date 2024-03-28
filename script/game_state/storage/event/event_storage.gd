@@ -20,7 +20,8 @@ signal home_return_request
 signal home_returned
 
 
-# SETTINGS
+# MENU
+signal menu_open_request
 
 # SOUND
 signal sound_switch_request
