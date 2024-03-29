@@ -1,4 +1,4 @@
-class_name MenuPopup
+class_name SettingsPopup
 extends Control
 
 

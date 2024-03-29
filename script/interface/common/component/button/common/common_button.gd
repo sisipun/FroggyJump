@@ -15,9 +15,10 @@ func _ready() -> void:
 
 
 func _on_button_down() -> void:
+	pivot_offset = get_rect().size / 2
 	_animation_player.play("down")
-	_audio_stream_player.play()
 
 
 func _on_button_up() -> void:
+	_audio_stream_player.play()
 	_animation_player.play("up")

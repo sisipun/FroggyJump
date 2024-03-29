@@ -13,8 +13,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_08rwh")
-_menu_button_path = NodePath("MenuButton")
-_level_goal_label_path = NodePath("LevelGoalLabel")
 
 [node name="LevelGoalLabel" type="Label" parent="."]
 custom_minimum_size = Vector2(200, 100)

@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://v2lmblaifnsg"]
+
+[ext_resource type="Script" path="res://script/interface/hud/level_hud.gd" id="1_3g788"]
+[ext_resource type="PackedScene" uid="uid://u32ycvis2y3i" path="res://script/interface/button/settings_button.tscn" id="1_8f3hp"]
+
+[node name="LevelHud" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_3g788")
+_level_goal_label_path = NodePath("LevelGoalLabel")
+
+[node name="LevelGoalLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -280.0
+offset_top = 50.0
+offset_right = -80.0
+offset_bottom = 150.0
+grow_horizontal = 0
+
+[node name="SettingsButton" parent="." instance=ExtResource("1_8f3hp")]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 110.0
+offset_bottom = 110.0

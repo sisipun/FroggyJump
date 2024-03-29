@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://bd4h8wyas1rta"]
+
+[ext_resource type="Script" path="res://script/interface/hud/menu_hud.gd" id="1_047xq"]
+[ext_resource type="PackedScene" uid="uid://u32ycvis2y3i" path="res://script/interface/button/settings_button.tscn" id="1_pt4v0"]
+
+[node name="MenuHud" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_047xq")
+
+[node name="SettingsButton" parent="." instance=ExtResource("1_pt4v0")]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 110.0
+offset_bottom = 110.0

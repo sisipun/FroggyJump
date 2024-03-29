@@ -1,0 +1,9 @@
+[gd_scene load_steps=4 format=3 uid="uid://u32ycvis2y3i"]
+
+[ext_resource type="PackedScene" uid="uid://exycl2y0itl1" path="res://script/interface/common/component/button/common/common_button.tscn" id="1_bgfv8"]
+[ext_resource type="Texture2D" uid="uid://cuxuifv56tb8k" path="res://asset/image/level/platform/effect/platform_effect_possible_move.svg" id="2_tfjla"]
+[ext_resource type="Script" path="res://script/interface/button/settings_button.gd" id="3_jgsr5"]
+
+[node name="SettingsButton" instance=ExtResource("1_bgfv8")]
+texture_normal = ExtResource("2_tfjla")
+script = ExtResource("3_jgsr5")

@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://7deogi8ayk5a"]
 
+[ext_resource type="Script" path="res://script/interface/popup/menu/settings_popup.gd" id="1_b28yi"]
 [ext_resource type="PackedScene" uid="uid://dq3p2kpr35bbc" path="res://script/interface/popup/menu/sound_button.tscn" id="1_h06lu"]
-[ext_resource type="Script" path="res://script/interface/popup/menu/menu_popup.gd" id="1_i3bh3"]
 [ext_resource type="PackedScene" uid="uid://bwuqqa8vwdevf" path="res://script/interface/popup/menu/music_button.tscn" id="2_uvknp"]
 [ext_resource type="PackedScene" uid="uid://36wbj3h8rtf4" path="res://script/interface/button/home_button.tscn" id="3_48gkf"]
 [ext_resource type="PackedScene" uid="uid://exycl2y0itl1" path="res://script/interface/common/component/button/common/common_button.tscn" id="4_q8ono"]
@@ -14,7 +14,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_i3bh3")
+script = ExtResource("1_b28yi")
 _background_path = NodePath("Background")
 _home_button_path = NodePath("Panel/Buttons/HomeButton")
 _close_button_path = NodePath("Panel/CloseButton")

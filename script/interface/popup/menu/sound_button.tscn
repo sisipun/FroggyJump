@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cy8f7vn3hgvms" path="res://asset/image/level/jumper/jumper_big.svg" id="4_3soit"]
 
 [node name="SoundButton" instance=ExtResource("1_ejdit")]
+action_mode = 0
 texture_normal = ExtResource("3_rmmjx")
 script = ExtResource("1_gommj")
 true_normal = ExtResource("3_rmmjx")
