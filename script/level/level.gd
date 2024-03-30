@@ -141,11 +141,10 @@ func _on_jumper_dead(x: int, y: int) -> void:
 
 
 func _on_level_finished(won: bool, stars: int, level_id: String) -> void:
-	if not won:
-		restart(level_id)
-		return
-	
-	Events.level_completed.emit(level_id, stars)
+	if won:
+		Events.level_completed.emit(level_id, stars)
+	else:
+		Events.level_failed.emit(level_id)
 
 
 func _kill_jumper(x: int, y: int) -> void:

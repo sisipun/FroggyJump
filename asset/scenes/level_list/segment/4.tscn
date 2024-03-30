@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://61ktt56hhksf"]
 
-[ext_resource type="PackedScene" uid="uid://fpa4qwwoxe08" path="res://script/interface/popup/level_list/level_list_segment.tscn" id="1_d0fra"]
+[ext_resource type="PackedScene" uid="uid://fpa4qwwoxe08" path="res://script/interface/popup/menu/level_list/level_list_segment.tscn" id="1_d0fra"]
 [ext_resource type="Texture2D" uid="uid://ckci8owuo4dca" path="res://asset/image/level_list/segment/4.png" id="2_01htc"]
-[ext_resource type="PackedScene" uid="uid://b0nr3hp5l3m0s" path="res://script/interface/popup/level_list/level_preview.tscn" id="3_dg65w"]
+[ext_resource type="PackedScene" uid="uid://b0nr3hp5l3m0s" path="res://script/interface/popup/menu/level_list/level_preview.tscn" id="3_dg65w"]
 
 [node name="LevelListSegment" instance=ExtResource("1_d0fra")]
 
@@ -17,9 +17,24 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -125.0
-offset_top = -125.0
+offset_top = -445.0
 offset_right = 125.0
-offset_bottom = 125.0
+offset_bottom = -195.0
 grow_horizontal = 2
 grow_vertical = 2
 level_id = "9"
+
+[node name="10" parent="Previews" index="1" instance=ExtResource("3_dg65w")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -125.0
+offset_top = 205.0
+offset_right = 125.0
+offset_bottom = 455.0
+grow_horizontal = 2
+grow_vertical = 2
+level_id = "10"

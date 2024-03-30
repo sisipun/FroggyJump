@@ -1,12 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://3s12voxr5i2v"]
+[gd_scene load_steps=11 format=3 uid="uid://3s12voxr5i2v"]
 
 [ext_resource type="Script" path="res://script/game.gd" id="1_7ywwe"]
 [ext_resource type="PackedScene" uid="uid://bmkyw0bd5yf7g" path="res://script/level/level.tscn" id="1_sv3j7"]
 [ext_resource type="PackedScene" uid="uid://d38xc7h07i1xh" path="res://script/interface/interace.tscn" id="2_u6qka"]
-[ext_resource type="PackedScene" uid="uid://bwr5y4lt7rg4b" path="res://script/interface/popup/complete/level_complete_popup.tscn" id="4_rgnhr"]
-[ext_resource type="PackedScene" uid="uid://pfwm4oy1uvhy" path="res://script/interface/popup/level_list/level_list_popup.tscn" id="5_usfuo"]
-[ext_resource type="PackedScene" uid="uid://7deogi8ayk5a" path="res://script/interface/popup/menu/settings_popup.tscn" id="5_w5b7c"]
+[ext_resource type="PackedScene" uid="uid://bwr5y4lt7rg4b" path="res://script/interface/popup/level/completed/level_completed_popup.tscn" id="4_rgnhr"]
+[ext_resource type="PackedScene" uid="uid://pfwm4oy1uvhy" path="res://script/interface/popup/menu/level_list/level_list_popup.tscn" id="5_usfuo"]
+[ext_resource type="PackedScene" uid="uid://7deogi8ayk5a" path="res://script/interface/popup/menu/settings/settings_popup.tscn" id="5_w5b7c"]
 [ext_resource type="PackedScene" uid="uid://bkrysdb51e63j" path="res://script/audio/background/background_music_player.tscn" id="6_o0lpq"]
+[ext_resource type="PackedScene" uid="uid://chrr5ky7eutm6" path="res://script/interface/popup/level/failed/level_failed_popup.tscn" id="7_buwe7"]
 [ext_resource type="PackedScene" uid="uid://v2lmblaifnsg" path="res://script/interface/hud/level_hud.tscn" id="7_y2iyg"]
 [ext_resource type="PackedScene" uid="uid://bd4h8wyas1rta" path="res://script/interface/hud/menu_hud.tscn" id="8_6431w"]
 
@@ -33,7 +34,8 @@ layer = 2
 
 [node name="Interace" parent="InterfaceLayer" instance=ExtResource("2_u6qka")]
 _level_list_popup_path = NodePath("LevelListPopup")
-_level_complete_popup_path = NodePath("LevelCompletePopup")
+_level_completed_popup_path = NodePath("LevelCompletePopup")
+_level_failed_popup_path = NodePath("LevelFailedPopup")
 _settings_popup_path = NodePath("SettingsPopup")
 _level_hud_path = NodePath("LevelHud")
 _menu_hud_path = NodePath("MenuHud")
@@ -46,6 +48,10 @@ visible = false
 layout_mode = 1
 
 [node name="LevelCompletePopup" parent="InterfaceLayer/Interace" instance=ExtResource("4_rgnhr")]
+visible = false
+layout_mode = 1
+
+[node name="LevelFailedPopup" parent="InterfaceLayer/Interace" instance=ExtResource("7_buwe7")]
 visible = false
 layout_mode = 1
 

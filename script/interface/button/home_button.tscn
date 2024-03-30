@@ -1,9 +1,9 @@
 [gd_scene load_steps=4 format=3 uid="uid://36wbj3h8rtf4"]
 
 [ext_resource type="PackedScene" uid="uid://exycl2y0itl1" path="res://script/interface/common/component/button/common/common_button.tscn" id="1_7mdb1"]
-[ext_resource type="Texture2D" uid="uid://bpk1eqwr1yvre" path="res://asset/image/level/jumper/jumper_fast.svg" id="2_qcpf6"]
+[ext_resource type="Texture2D" uid="uid://treyfalyq6ni" path="res://asset/image/interface/button/home_button.svg" id="2_biew5"]
 [ext_resource type="Script" path="res://script/interface/button/home_button.gd" id="3_2mkph"]
 
 [node name="HomeButton" instance=ExtResource("1_7mdb1")]
-texture_normal = ExtResource("2_qcpf6")
+texture_normal = ExtResource("2_biew5")
 script = ExtResource("3_2mkph")

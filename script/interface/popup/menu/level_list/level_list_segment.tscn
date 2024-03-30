@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://fpa4qwwoxe08"]
 
-[ext_resource type="Script" path="res://script/interface/popup/level_list/level_list_segment.gd" id="1_616gm"]
+[ext_resource type="Script" path="res://script/interface/popup/menu/level_list/level_list_segment.gd" id="1_tmghf"]
 
 [node name="LevelListSegment" type="Control"]
 custom_minimum_size = Vector2(1080, 1920)
@@ -12,7 +12,7 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.992495, 1)
 mouse_filter = 1
-script = ExtResource("1_616gm")
+script = ExtResource("1_tmghf")
 _previews_node_path = NodePath("Previews")
 
 [node name="Background" type="NinePatchRect" parent="."]

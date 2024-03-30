@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=3 uid="uid://chrr5ky7eutm6"]
+
+[ext_resource type="Script" path="res://script/interface/popup/level/failed/level_failed_popup.gd" id="1_wc2fa"]
+[ext_resource type="PackedScene" uid="uid://blrvhtv8r7dqk" path="res://script/interface/button/restart_level_button.tscn" id="2_snj8n"]
+[ext_resource type="PackedScene" uid="uid://36wbj3h8rtf4" path="res://script/interface/button/home_button.tscn" id="3_yopp0"]
+
+[node name="LevelFailedPopup" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wc2fa")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.501961, 0.501961, 0.501961, 1)
+
+[node name="Buttons" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -100.0
+offset_right = 250.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="RestartButton" parent="Buttons" instance=ExtResource("2_snj8n")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HomeButton" parent="Buttons" instance=ExtResource("3_yopp0")]
+layout_mode = 2
+size_flags_horizontal = 3

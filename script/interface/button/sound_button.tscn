@@ -1,0 +1,13 @@
+[gd_scene load_steps=5 format=3 uid="uid://dq3p2kpr35bbc"]
+
+[ext_resource type="PackedScene" uid="uid://brhyybq2qgn8o" path="res://script/interface/common/component/button/switch/switch_button.tscn" id="1_bqhex"]
+[ext_resource type="Texture2D" uid="uid://rtc1s2iumi4q" path="res://asset/image/interface/button/sound_button_on.svg" id="2_w14rq"]
+[ext_resource type="Script" path="res://script/interface/button/sound_button.gd" id="3_sl53b"]
+[ext_resource type="Texture2D" uid="uid://btntaf83boh50" path="res://asset/image/interface/button/sound_button_off.svg" id="4_lpoe3"]
+
+[node name="SoundButton" instance=ExtResource("1_bqhex")]
+action_mode = 0
+texture_normal = ExtResource("2_w14rq")
+script = ExtResource("3_sl53b")
+true_normal = ExtResource("2_w14rq")
+false_normal = ExtResource("4_lpoe3")

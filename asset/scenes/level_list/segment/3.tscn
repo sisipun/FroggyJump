@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://dh4y4deavq5hc"]
 
-[ext_resource type="PackedScene" uid="uid://fpa4qwwoxe08" path="res://script/interface/popup/level_list/level_list_segment.tscn" id="1_mfwyx"]
+[ext_resource type="PackedScene" uid="uid://fpa4qwwoxe08" path="res://script/interface/popup/menu/level_list/level_list_segment.tscn" id="1_mfwyx"]
 [ext_resource type="Texture2D" uid="uid://do1ixeoqgykhg" path="res://asset/image/level_list/segment/3.png" id="2_rtlhw"]
-[ext_resource type="PackedScene" uid="uid://b0nr3hp5l3m0s" path="res://script/interface/popup/level_list/level_preview.tscn" id="3_j1aee"]
+[ext_resource type="PackedScene" uid="uid://b0nr3hp5l3m0s" path="res://script/interface/popup/menu/level_list/level_preview.tscn" id="3_j1aee"]
 
 [node name="LevelListSegment" instance=ExtResource("1_mfwyx")]
 

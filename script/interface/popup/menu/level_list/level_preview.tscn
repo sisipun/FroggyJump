@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://b0nr3hp5l3m0s"]
 
 [ext_resource type="Texture2D" uid="uid://cvkb2ovna2fty" path="res://asset/image/level_list/preview/background.png" id="1_knvtu"]
-[ext_resource type="Script" path="res://script/interface/popup/level_list/level_preview.gd" id="1_uj1hw"]
+[ext_resource type="Script" path="res://script/interface/popup/menu/level_list/level_preview.gd" id="1_uj1hw"]
 [ext_resource type="Texture2D" uid="uid://d38d014uff626" path="res://asset/image/level_list/preview/background_unavailable.png" id="3_7x7s0"]
-[ext_resource type="PackedScene" uid="uid://c5ad5ryo32beu" path="res://script/interface/popup/level_list/level_stars.tscn" id="3_qvqj5"]
+[ext_resource type="PackedScene" uid="uid://c5ad5ryo32beu" path="res://script/interface/popup/menu/level_list/level_stars.tscn" id="3_qvqj5"]
 
 [node name="LevelPreview" type="NinePatchRect"]
 custom_minimum_size = Vector2(250, 250)

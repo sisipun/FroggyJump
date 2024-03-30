@@ -1,0 +1,58 @@
+[gd_resource type="Resource" script_class="LevelResource" load_steps=11 format=3 uid="uid://cttduc41r0qoc"]
+
+[ext_resource type="Script" path="res://script/game_state/resource/level/level_cell_custom_resource.gd" id="1_n0v4v"]
+[ext_resource type="Script" path="res://script/game_state/resource/level/level_cell_resource.gd" id="2_px0mn"]
+[ext_resource type="Script" path="res://script/game_state/resource/level/level_resource.gd" id="3_5i4hr"]
+
+[sub_resource type="Resource" id="Resource_yd6b5"]
+script = ExtResource("1_n0v4v")
+coordinates = Vector2i(2, 2)
+platfrom = 1
+jumper = 1
+
+[sub_resource type="Resource" id="Resource_bvqhv"]
+script = ExtResource("1_n0v4v")
+coordinates = Vector2i(1, 3)
+platfrom = 1
+jumper = 2
+
+[sub_resource type="Resource" id="Resource_gneva"]
+script = ExtResource("1_n0v4v")
+coordinates = Vector2i(1, 2)
+platfrom = 2
+jumper = 3
+
+[sub_resource type="Resource" id="Resource_5krmm"]
+script = ExtResource("1_n0v4v")
+coordinates = Vector2i(1, 1)
+platfrom = 1
+jumper = 1
+
+[sub_resource type="Resource" id="Resource_qrymg"]
+script = ExtResource("1_n0v4v")
+coordinates = Vector2i(0, 1)
+platfrom = 1
+jumper = 2
+
+[sub_resource type="Resource" id="Resource_yk01j"]
+script = ExtResource("1_n0v4v")
+coordinates = Vector2i(2, 1)
+platfrom = 0
+jumper = 0
+
+[sub_resource type="Resource" id="Resource_8k2ry"]
+script = ExtResource("2_px0mn")
+platfrom = 1
+jumper = 0
+
+[resource]
+script = ExtResource("3_5i4hr")
+id = "10"
+width = 5
+height = 5
+win_condition = 3
+_two_star_condition = 2
+_three_star_condition = 1
+default_cell = SubResource("Resource_8k2ry")
+custom_cells = Array[ExtResource("1_n0v4v")]([SubResource("Resource_yd6b5"), SubResource("Resource_bvqhv"), SubResource("Resource_gneva"), SubResource("Resource_5krmm"), SubResource("Resource_qrymg"), SubResource("Resource_yk01j")])
+required_levels = Array[String](["9"])
