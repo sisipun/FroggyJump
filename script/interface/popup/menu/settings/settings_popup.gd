@@ -1,5 +1,5 @@
 class_name SettingsPopup
-extends Control
+extends CommonPopup
 
 
 @export_node_path("ColorRect") var _background_path: NodePath

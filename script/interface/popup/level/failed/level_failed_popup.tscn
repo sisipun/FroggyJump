@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://chrr5ky7eutm6"]
+[gd_scene load_steps=5 format=3 uid="uid://chrr5ky7eutm6"]
 
 [ext_resource type="Script" path="res://script/interface/popup/level/failed/level_failed_popup.gd" id="1_wc2fa"]
 [ext_resource type="PackedScene" uid="uid://blrvhtv8r7dqk" path="res://script/interface/button/restart_level_button.tscn" id="2_snj8n"]
 [ext_resource type="PackedScene" uid="uid://36wbj3h8rtf4" path="res://script/interface/button/home_button.tscn" id="3_yopp0"]
+[ext_resource type="AudioStream" uid="uid://c0wpibgy5g8dm" path="res://asset/audio/interface/popup/level/failed/level_failed_sound.wav" id="4_wur4l"]
 
 [node name="LevelFailedPopup" type="Control"]
 layout_mode = 3
@@ -12,6 +13,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_wc2fa")
+_sound_player_path = NodePath("SoundPlayer")
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
@@ -44,3 +46,7 @@ size_flags_horizontal = 3
 [node name="HomeButton" parent="Buttons" instance=ExtResource("3_yopp0")]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="SoundPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_wur4l")
+bus = &"Sound"

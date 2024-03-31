@@ -1,8 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://d38xc7h07i1xh"]
+[gd_scene load_steps=2 format=3 uid="uid://d38xc7h07i1xh"]
 
 [ext_resource type="Script" path="res://script/interface/interace.gd" id="1_08rwh"]
-[ext_resource type="PackedScene" uid="uid://exycl2y0itl1" path="res://script/interface/common/component/button/common/common_button.tscn" id="2_373nw"]
-[ext_resource type="Texture2D" uid="uid://cuxuifv56tb8k" path="res://asset/image/level/platform/effect/platform_effect_possible_move.svg" id="3_mg5t7"]
 
 [node name="Interace" type="Control"]
 layout_mode = 3
@@ -13,24 +11,3 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_08rwh")
-
-[node name="LevelGoalLabel" type="Label" parent="."]
-custom_minimum_size = Vector2(200, 100)
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -255.0
-offset_top = 50.0
-offset_right = -55.0
-offset_bottom = 150.0
-grow_horizontal = 0
-
-[node name="MenuButton" parent="." instance=ExtResource("2_373nw")]
-layout_mode = 0
-offset_left = 50.0
-offset_top = 50.0
-offset_right = 110.0
-offset_bottom = 110.0
-scale = Vector2(1.01675, 1.01195)
-texture_normal = ExtResource("3_mg5t7")

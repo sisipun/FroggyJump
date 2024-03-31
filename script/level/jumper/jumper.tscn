@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dnxvurhl2cset"]
+[gd_scene load_steps=7 format=3 uid="uid://dnxvurhl2cset"]
 
 [ext_resource type="Script" path="res://script/level/jumper/jumper.gd" id="1_h0n3a"]
 [ext_resource type="Texture2D" uid="uid://cy8f7vn3hgvms" path="res://asset/image/level/jumper/jumper_big.svg" id="2_icpam"]
 [ext_resource type="Texture2D" uid="uid://c5y1xv7ytii5n" path="res://asset/image/level/jumper/jumper.svg" id="2_u0ibu"]
+[ext_resource type="AudioStream" uid="uid://dxhhr40a3ycjq" path="res://asset/audio/level/jumper/jumper_move_sound.wav" id="4_vge8m"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o4ms2"]
 radius = 32.0
@@ -30,6 +31,7 @@ animations = [{
 script = ExtResource("1_h0n3a")
 _shape_path = NodePath("Shape")
 _body_path = NodePath("Body")
+_sound_player_path = NodePath("SoundPlayer")
 
 [node name="Shape" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_o4ms2")
@@ -38,3 +40,7 @@ shape = SubResource("CircleShape2D_o4ms2")
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_htx5m")
 animation = &"dead"
+
+[node name="SoundPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_vge8m")
+bus = &"Sound"

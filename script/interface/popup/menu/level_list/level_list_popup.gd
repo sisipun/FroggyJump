@@ -1,2 +1,2 @@
 class_name LevelListPopup
-extends Control
+extends CommonPopup

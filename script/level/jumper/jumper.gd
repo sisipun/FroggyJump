@@ -7,11 +7,13 @@ signal movement_finished
 
 @export_node_path("CollisionShape2D") var _shape_path: NodePath
 @export_node_path("AnimatedSprite2D") var _body_path: NodePath
+@export_node_path("AudioStreamPlayer") var _sound_player_path: NodePath
 
 @export var _speed: float = 30.0
 
 @onready var _shape: CollisionShape2D = get_node(_shape_path)
 @onready var _body: AnimatedSprite2D = get_node(_body_path)
+@onready var _sound_player: AudioStreamPlayer = get_node(_sound_player_path)
 
 var jump_distance: int
 var health: int
@@ -55,6 +57,7 @@ func move_to(new_position: Vector2, initial: bool) -> void:
 	
 	move_to_position = new_position
 	if move_to_position != position:
+		_sound_player.play()
 		set_physics_process(true)
 
 
